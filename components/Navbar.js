@@ -103,16 +103,23 @@ const Navbar = () => {
 					<p
 						style={{
 							display: 'flex',
-							justifyContent: 'center',
 							alignItems: 'center',
+							justifyContent: 'center',
+							// padding: '0 0.5rem',
+							// border: '1px solid black',
 						}}
 					>
-						<span style={{ display: 'flex' }}>
+						<span
+							style={{ textAlign: 'center', display: 'flex', height: '100%' }}
+						>
 							<span
-							// style={{
-							// 	display: '',
-							// 	border: '1px solid black',
-							// }}
+								style={{
+									display: 'flex',
+									alignItems: 'center',
+									// border: '1px solid black',
+
+									height: '100%',
+								}}
 							>
 								<svg
 									xmlns='http://www.w3.org/2000/svg'
@@ -134,6 +141,7 @@ const Navbar = () => {
 									justifyContent: 'flex-start',
 									textAlign: 'left',
 									paddingLeft: '0.2rem',
+									textAlign: 'center',
 								}}
 							>
 								{' '}
