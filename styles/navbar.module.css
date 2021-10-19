@@ -1,0 +1,72 @@
+.cont {
+	width: 100%;
+	background-color: #fff;
+}
+.body {
+	margin-top: 1rem;
+	width: 95%;
+	display: flex;
+	margin: auto;
+}
+.logo {
+	flex: 1;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.infos {
+	flex: 2;
+	display: flex;
+}
+.ftrs {
+	flex: 6;
+	display: flex;
+}
+.ftrs p {
+	flex: 1;
+	text-align: center;
+	font-size: 0.9rem;
+	padding: 0.3rem 0;
+	border-radius: 10px;
+	color: #707070;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.ftrs p:hover {
+	color: #fff !important;
+	background-color: blue;
+}
+.ftrs p svg path {
+	fill: #707070;
+}
+.ftrs p:hover svg path,
+.ftrs p:hover {
+	fill: #ffffff;
+	color: white;
+}
+
+.infos p:nth-child(1) {
+	text-align: center;
+	flex: 4;
+	display: grid;
+	align-items: center;
+	/* border: 1px solid black; */
+}
+.infos p:nth-child(2) {
+	flex: 1;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	/* border: 1px solid black; */
+}
+.infos p:nth-child(3) {
+	flex: 1;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	/* border: 1px solid black; */
+}
+.infos p:nth-child(3):hover > svg path {
+	fill: #366ef1;
+}
