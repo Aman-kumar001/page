@@ -64,6 +64,7 @@ const Table = () => {
 							borderRadius: '8px',
 							border: 'none',
 							padding: '0.2rem 0.2rem',
+							color: '#707070',
 						}}
 						type='date'
 						name='date'
@@ -76,6 +77,7 @@ const Table = () => {
 							borderRadius: '8px',
 							border: 'none',
 							padding: '0.2rem 0.2rem',
+							color: '#707070',
 						}}
 						name='text'
 						id='text'
