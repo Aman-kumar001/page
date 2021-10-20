@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import classes from '../styles/table.module.css';
 import Navbar from './Navbar';
+import { CircularProgressbar } from 'react-circular-progressbar';
+import 'react-circular-progressbar/dist/styles.css';
 const Table = () => {
 	const [data, setData] = useState([
 		{
@@ -489,11 +491,69 @@ const Table = () => {
 										</span>
 									</p>
 								</td>
-								<td>
-									<p>{data.CS}</p>
+								<td style={{ padding: '0.4rem' }}>
+									<p>
+										<CircularProgressbar
+											value={data.CS * 10}
+											text={`${data.CS}`}
+											styles={{
+												root: {},
+
+												path: {
+													stroke: `#FF002B`,
+													strokeLinecap: 'round',
+													transformOrigin: 'center center',
+												},
+
+												trail: {
+													stroke: '#fff',
+													strokeLinecap: 'round',
+													transformOrigin: 'center center',
+												},
+
+												text: {
+													fill: '#333333',
+													fontSize: '2rem',
+												},
+
+												background: {
+													fill: '#fff',
+												},
+											}}
+										/>
+									</p>
 								</td>
-								<td>
-									<p>{data.DS}</p>
+								<td style={{ padding: '0.4rem' }}>
+									<p>
+										<CircularProgressbar
+											value={data.DS * 10}
+											text={`${data.DS}`}
+											styles={{
+												root: {},
+
+												path: {
+													stroke: `#34D12F`,
+													strokeLinecap: 'round',
+													transformOrigin: 'center center',
+												},
+
+												trail: {
+													stroke: '#fff',
+													strokeLinecap: 'round',
+													transformOrigin: 'center center',
+												},
+
+												text: {
+													fill: '#333333',
+													fontSize: '2rem',
+												},
+
+												background: {
+													fill: '#fff',
+												},
+											}}
+										/>
+									</p>
 								</td>
 								<td>
 									<p
