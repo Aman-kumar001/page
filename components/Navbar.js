@@ -116,8 +116,6 @@ const Navbar = () => {
 								style={{
 									display: 'flex',
 									alignItems: 'center',
-									// border: '1px solid black',
-
 									height: '100%',
 								}}
 							>
@@ -144,7 +142,6 @@ const Navbar = () => {
 									textAlign: 'center',
 								}}
 							>
-								{' '}
 								Control Tower
 							</span>
 						</span>

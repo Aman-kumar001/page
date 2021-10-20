@@ -61,7 +61,7 @@ const Table = () => {
 					<input
 						style={{
 							height: '2rem',
-							borderRadius: '4px',
+							borderRadius: '8px',
 							border: 'none',
 							padding: '0.2rem 0.2rem',
 						}}
@@ -73,7 +73,7 @@ const Table = () => {
 						type='text'
 						style={{
 							height: '2rem',
-							borderRadius: '4px',
+							borderRadius: '8px',
 							border: 'none',
 							padding: '0.2rem 0.2rem',
 						}}
@@ -89,7 +89,7 @@ const Table = () => {
 							display: 'flex',
 							justifyContent: 'center',
 							alignItems: 'center',
-							borderRadius: '4px',
+							borderRadius: '8px',
 						}}
 					>
 						<svg
@@ -124,7 +124,7 @@ const Table = () => {
 							display: 'flex',
 							justifyContent: 'center',
 							alignItems: 'center',
-							borderRadius: '4px',
+							borderRadius: '8px',
 						}}
 					>
 						<svg
@@ -158,6 +158,7 @@ const Table = () => {
 							color: '#fff',
 							border: 'none',
 							padding: '0 1rem',
+							borderRadius: '8px',
 						}}
 					>
 						Create Order
