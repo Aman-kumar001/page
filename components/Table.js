@@ -2,25 +2,40 @@ import { useState } from 'react';
 import classes from '../styles/table.module.css';
 import Navbar from './Navbar';
 import { CircularProgressbar } from 'react-circular-progressbar';
+import Image from 'next/dist/client/image';
+import Shopify from '../public/table/shopify.svg';
 import 'react-circular-progressbar/dist/styles.css';
 const Table = () => {
+	const [editDims, setEditDims] = useState(false);
+	const [editStatus, setEditStatus] = useState('');
+	const [editStaff, setEditStaff] = useState('');
+	const [editFollowUp, setEditFollowUp] = useState(false);
+	const [editDelivery, setEditDelivery] = useState(false);
+	const [checked, setChecked] = useState(0);
+
+	//states for table
+	const [status, setStatus] = useState(-1);
+	const [staff, setStaff] = useState(-1);
+	const [follow, setFollow] = useState(-1);
+	const [deli, setDeli] = useState(-1);
+
 	const [data, setData] = useState([
 		{
 			id: '#123123',
 			date: '12/28/1221',
 			time: '02:20:12',
 			shopify: 'shopify',
-			product: 'arm chair',
+			product: 'arm chairasdfasdf',
 			qty: '1',
-			dims: '123 x 213 x 21300',
-			Volume: '12Kg',
-			Entered: '10kg',
+			dims: '123 x 213 x 213000',
+			Volume: 12,
+			Entered: 10,
 			rs: '7654',
 			status: 'Pending',
 			cust: 'Aman Kumar',
 			phNum: '1234567890',
 			mail: 'random@mail.com',
-			staff: 'D.mathews',
+			staff: 'Mr. Aman',
 			FollowUp: 'pending',
 			Delivery: 'Pending',
 			CS: 3,
@@ -34,8 +49,8 @@ const Table = () => {
 			product: 'arm chair',
 			qty: '1',
 			dims: '123 x 213 x 213',
-			Volume: '12Kg',
-			Entered: '10kg',
+			Volume: 12,
+			Entered: 10,
 			rs: '7654',
 			status: 'Paid',
 			cust: 'Aman Kumar',
@@ -171,28 +186,24 @@ const Table = () => {
 			</div>
 			<div className={classes.table}>
 				<table cellSpacing='0' className={classes.tb}>
-					<tr style={{ marginBottom: '1rem' }}>
-						<th style={{ display: 'flex', alignItems: 'center' }}>
-							<span>
-								<input
-									type='checkbox'
-									name='orderId'
-									id='orderId'
-									style={{ display: 'none' }}
-								/>
-								<label
-									htmlFor='orderId'
-									style={{
-										borderRadius: '5px',
-										border: '1px solid #fff',
-										padding: '0 0.6rem',
-										height: '1rem',
-										width: '1rem',
-									}}
-								></label>
-							</span>
-							<span>Order Id</span>
+					<tr className={classes.head} style={{ marginBottom: '1rem' }}>
+						<th
+							style={{
+								padding: '0.2rem',
+							}}
+						>
+							<div
+								style={{
+									width: '1.2rem',
+									height: '1.2rem',
+									// backgroundColor: 'red',
+									borderRadius: '4px',
+									transform: 'translateX(0.2rem)',
+									// backgroundImage: `url${check}`,
+								}}
+							></div>
 						</th>
+						<th>Order Id</th>
 						<th>Channels</th>
 						<th>Products</th>
 						<th>Dinmensions</th>
@@ -209,7 +220,8 @@ const Table = () => {
 					{data.map((data, index) => {
 						return (
 							<tr key={index}>
-								<td style={{ display: 'flex', columnGap: '0.4rem' }}>
+								{/* checkbox */}
+								<td>
 									<span style={{ display: 'flex', alignItems: 'center' }}>
 										<input
 											type='checkbox'
@@ -227,6 +239,10 @@ const Table = () => {
 											}}
 										></label>
 									</span>
+								</td>
+
+								{/* time & id */}
+								<td style={{ display: 'flex', columnGap: '0.4rem' }}>
 									<div>
 										<p>{data.id}</p>
 										<p
@@ -273,19 +289,33 @@ const Table = () => {
 										</p>
 									</div>
 								</td>
-								<td>{data.shopify}</td>
-								<td style={{ textAlign: 'left' }}>
+
+								{/* shopify */}
+								<td>
+									<p>{data.shopify}</p>
+									<p>
+										<Image src={Shopify} height={24} width={24} />
+									</p>
+								</td>
+
+								{/* product */}
+								<td style={{ textAlign: 'left', width: '2rem' }}>
 									<p
 										style={{
-											whiteSpace: 'nowrap',
+											display: 'block',
 											overflow: 'hidden',
 											textOverflow: 'ellipsis',
+											whiteSpace: 'nowrap',
+											width: '6rem',
+											// border: '1px solid black',
 										}}
 									>
 										{data.product}
 									</p>
 									<p>Qty : {data.qty}</p>
 								</td>
+
+								{/* dimensions */}
 								<td>
 									<p
 										style={{
@@ -299,6 +329,7 @@ const Table = () => {
 												whiteSpace: 'nowrap',
 												overflow: 'hidden',
 												textOverflow: 'ellipsis',
+												width: '5.5rem',
 											}}
 										>
 											{data.dims}
@@ -325,12 +356,14 @@ const Table = () => {
 											</span>
 										</span>
 									</p>
-									<p>Volumetric : {data.Volume}</p>
-									<p>Entered : {data.Entered}</p>
+									<p>Volumetric : {data.Volume} Kg</p>
+									<p>Entered : {data.Entered} Kg</p>
 								</td>
+
+								{/* status */}
 								<td>
 									<p>Rs. {data.rs}</p>
-									<p>
+									<p style={{ position: 'relative' }}>
 										<span
 											style={{
 												padding: '0.2rem 0.5rem',
@@ -346,6 +379,9 @@ const Table = () => {
 											{data.status}
 										</span>{' '}
 										<span
+											onClick={() => {
+												setStatus(index);
+											}}
 											style={{
 												backgroundColor: '#366EF1',
 												padding: '0 0.3rem',
@@ -364,8 +400,124 @@ const Table = () => {
 												/>
 											</svg>
 										</span>
+										{status == index && (
+											<div className={classes.status}>
+												<input
+													type='radio'
+													value='Paid'
+													name={'status' + index}
+													id={'statusPaid' + index}
+													defaultChecked={data.status == 'Paid' ? true : false}
+													onChange={(e) => {
+														setEditStatus(e.target.value);
+													}}
+												/>
+												<label htmlFor={'statusPaid' + index}>
+													<span>Paid</span>
+													<span
+														style={{
+															height: '1.2rem',
+															width: '1.2rem',
+
+															position: 'relative',
+															display: 'inline-block',
+														}}
+													>
+														<svg
+															xmlns='http://www.w3.org/2000/svg'
+															width='20'
+															height='20'
+															viewBox='0 0 16 16'
+														>
+															<path
+																id='check_box'
+																data-name='check box'
+																d='M18.722,4.5H6.278A1.777,1.777,0,0,0,4.5,6.278V18.722A1.777,1.777,0,0,0,6.278,20.5H18.722A1.777,1.777,0,0,0,20.5,18.722V6.278A1.777,1.777,0,0,0,18.722,4.5Zm-8,12.444L6.278,12.5l1.253-1.253,3.191,3.182,6.747-6.747,1.253,1.262Z'
+																transform='translate(-4.5 -4.5)'
+																fill='#00E3A5'
+															/>
+														</svg>
+													</span>
+												</label>
+
+												<input
+													type='radio'
+													name={'status' + index}
+													id={'statusPending' + index}
+													defaultChecked={
+														data.status == 'Pending' ? true : false
+													}
+													onChange={(e) => {
+														setEditStatus(e.target.value);
+													}}
+													value='Pending'
+												/>
+												<label htmlFor={'statusPending' + index}>
+													<span>Pending</span>
+													<span
+														style={{
+															height: '1.2rem',
+															width: '1.2rem',
+
+															position: 'relative',
+															display: 'inline-block',
+														}}
+													>
+														<svg
+															xmlns='http://www.w3.org/2000/svg'
+															width='20'
+															height='20'
+															viewBox='0 0 16 16'
+														>
+															<path
+																id='check_box'
+																data-name='check box'
+																d='M18.722,4.5H6.278A1.777,1.777,0,0,0,4.5,6.278V18.722A1.777,1.777,0,0,0,6.278,20.5H18.722A1.777,1.777,0,0,0,20.5,18.722V6.278A1.777,1.777,0,0,0,18.722,4.5Zm-8,12.444L6.278,12.5l1.253-1.253,3.191,3.182,6.747-6.747,1.253,1.262Z'
+																transform='translate(-4.5 -4.5)'
+																fill='#FF002B'
+															/>
+														</svg>
+													</span>
+												</label>
+												<div
+													style={{
+														marginTop: '1rem',
+														display: 'flex',
+														columnGap: '0.2rem',
+														justifyContent: 'center',
+													}}
+												>
+													<button
+														style={{
+															background: '#366EF1 0% 0% no-repeat padding-box',
+															borderRadius: '3px',
+															color: '#fff',
+														}}
+														onClick={(e) => {
+															e.preventDefault();
+															data.status = editStatus;
+															setEditStatus('');
+															setStatus(-1);
+														}}
+													>
+														DONE
+													</button>
+													<button
+														style={{
+															backgroundColor: '#fff',
+															color: '#707070',
+														}}
+														onClick={() => setStatus(-1)}
+													>
+														Cancel
+													</button>
+												</div>
+											</div>
+										)}
 									</p>
 								</td>
+
+								{/* cust */}
 								<td style={{ textAlign: 'left' }}>
 									<p>{data.cust}</p>
 									<p
@@ -389,15 +541,26 @@ const Table = () => {
 										{data.mail}
 									</p>
 								</td>
-								<td>
+
+								{/* staff */}
+								<td style={{ position: 'relative' }}>
 									<p
 										style={{
 											display: 'flex',
 											justifyContent: 'space-between',
-											columnGap: '0.4rem',
+											columnGap: '0.2rem',
 										}}
 									>
-										<span style={{ fontWeight: '700', color: '#366EF1' }}>
+										<span
+											style={{
+												fontWeight: '700',
+												color: '#366EF1',
+												whiteSpace: 'nowrap',
+												overflow: 'hidden',
+												textOverflow: 'ellipsis',
+												display: 'block',
+											}}
+										>
 											{data.staff}
 										</span>
 										<span>
@@ -406,6 +569,9 @@ const Table = () => {
 													backgroundColor: '#366EF1',
 													padding: '0 0.3rem',
 													borderRadius: '5px',
+												}}
+												onClick={() => {
+													setStaff(index);
 												}}
 											>
 												<svg
@@ -422,8 +588,231 @@ const Table = () => {
 											</span>
 										</span>
 									</p>
+									{staff == index && (
+										<div className={classes.staff}>
+											<div className={classes.staffNames}>
+												<input
+													type='radio'
+													name='staff'
+													id={'1' + index}
+													value='Mr. Drew'
+													onChange={(e) => setEditStaff(e.target.value)}
+													defaultChecked={
+														data.staff == 'Mr. Drew' ? true : false
+													}
+												/>
+												<label htmlFor={'1' + index}>
+													<span>Mr. Drew</span>
+													<span
+														style={{
+															height: '1.2rem',
+															width: '1.2rem',
+
+															position: 'relative',
+															display: 'inline-block',
+														}}
+													>
+														<svg
+															xmlns='http://www.w3.org/2000/svg'
+															width='20'
+															height='20'
+															viewBox='0 0 16 16'
+														>
+															<path
+																id='check_box'
+																data-name='check box'
+																d='M18.722,4.5H6.278A1.777,1.777,0,0,0,4.5,6.278V18.722A1.777,1.777,0,0,0,6.278,20.5H18.722A1.777,1.777,0,0,0,20.5,18.722V6.278A1.777,1.777,0,0,0,18.722,4.5Zm-8,12.444L6.278,12.5l1.253-1.253,3.191,3.182,6.747-6.747,1.253,1.262Z'
+																transform='translate(-4.5 -4.5)'
+																fill='#366ef1'
+															/>
+														</svg>
+													</span>
+												</label>
+												<input
+													type='radio'
+													name='staff'
+													id={'2' + index}
+													value='Mr. Random'
+													onChange={(e) => setEditStaff(e.target.value)}
+													defaultChecked={
+														data.staff == 'Mr. Random' ? true : false
+													}
+												/>
+												<label htmlFor={'2' + index}>
+													<span>Mr. Random</span>
+													<span
+														style={{
+															height: '1.2rem',
+															width: '1.2rem',
+															position: 'relative',
+															display: 'inline-block',
+														}}
+													>
+														<svg
+															xmlns='http://www.w3.org/2000/svg'
+															width='20'
+															height='20'
+															viewBox='0 0 16 16'
+														>
+															<path
+																id='check_box'
+																data-name='check box'
+																d='M18.722,4.5H6.278A1.777,1.777,0,0,0,4.5,6.278V18.722A1.777,1.777,0,0,0,6.278,20.5H18.722A1.777,1.777,0,0,0,20.5,18.722V6.278A1.777,1.777,0,0,0,18.722,4.5Zm-8,12.444L6.278,12.5l1.253-1.253,3.191,3.182,6.747-6.747,1.253,1.262Z'
+																transform='translate(-4.5 -4.5)'
+																fill='#366ef1'
+															/>
+														</svg>
+													</span>
+												</label>
+
+												<input
+													type='radio'
+													name='staff'
+													id={'3' + index}
+													value='Mr. Aman'
+													onChange={(e) => setEditStaff(e.target.value)}
+													defaultChecked={
+														data.staff == 'Mr. Aman' ? true : false
+													}
+												/>
+												<label htmlFor={'3' + index}>
+													<span>Mr. Aman</span>
+													<span
+														style={{
+															height: '1.2rem',
+															width: '1.2rem',
+
+															position: 'relative',
+															display: 'inline-block',
+														}}
+													>
+														<svg
+															xmlns='http://www.w3.org/2000/svg'
+															width='20'
+															height='20'
+															viewBox='0 0 16 16'
+														>
+															<path
+																id='check_box'
+																data-name='check box'
+																d='M18.722,4.5H6.278A1.777,1.777,0,0,0,4.5,6.278V18.722A1.777,1.777,0,0,0,6.278,20.5H18.722A1.777,1.777,0,0,0,20.5,18.722V6.278A1.777,1.777,0,0,0,18.722,4.5Zm-8,12.444L6.278,12.5l1.253-1.253,3.191,3.182,6.747-6.747,1.253,1.262Z'
+																transform='translate(-4.5 -4.5)'
+																fill='#366ef1'
+															/>
+														</svg>
+													</span>
+												</label>
+
+												<input
+													type='radio'
+													name='staff'
+													id={'4' + index}
+													value='Mr. Aman'
+													onChange={(e) => setEditStaff(e.target.value)}
+													defaultChecked={
+														data.staff == 'Mr. Other' ? true : false
+													}
+												/>
+												<label htmlFor={'4' + index}>
+													<span>Mr. Other</span>
+													<span
+														style={{
+															height: '1.2rem',
+															width: '1.2rem',
+
+															position: 'relative',
+															display: 'inline-block',
+														}}
+													>
+														<svg
+															xmlns='http://www.w3.org/2000/svg'
+															width='20'
+															height='20'
+															viewBox='0 0 16 16'
+														>
+															<path
+																id='check_box'
+																data-name='check box'
+																d='M18.722,4.5H6.278A1.777,1.777,0,0,0,4.5,6.278V18.722A1.777,1.777,0,0,0,6.278,20.5H18.722A1.777,1.777,0,0,0,20.5,18.722V6.278A1.777,1.777,0,0,0,18.722,4.5Zm-8,12.444L6.278,12.5l1.253-1.253,3.191,3.182,6.747-6.747,1.253,1.262Z'
+																transform='translate(-4.5 -4.5)'
+																fill='#366ef1'
+															/>
+														</svg>
+													</span>
+												</label>
+
+												<input
+													type='radio'
+													name='staff'
+													id={'5' + index}
+													value='Mr. Aman'
+													onChange={(e) => setEditStaff(e.target.value)}
+													defaultChecked={
+														data.staff == 'Mr. another' ? true : false
+													}
+												/>
+												<label htmlFor={'5' + index}>
+													<span>Mr. another</span>
+													<span
+														style={{
+															height: '1.2rem',
+															width: '1.2rem',
+
+															position: 'relative',
+															display: 'inline-block',
+														}}
+													>
+														<svg
+															xmlns='http://www.w3.org/2000/svg'
+															width='20'
+															height='20'
+															viewBox='0 0 16 16'
+														>
+															<path
+																id='check_box'
+																data-name='check box'
+																d='M18.722,4.5H6.278A1.777,1.777,0,0,0,4.5,6.278V18.722A1.777,1.777,0,0,0,6.278,20.5H18.722A1.777,1.777,0,0,0,20.5,18.722V6.278A1.777,1.777,0,0,0,18.722,4.5Zm-8,12.444L6.278,12.5l1.253-1.253,3.191,3.182,6.747-6.747,1.253,1.262Z'
+																transform='translate(-4.5 -4.5)'
+																fill='#366ef1'
+															/>
+														</svg>
+													</span>
+												</label>
+											</div>
+											<div
+												style={{
+													display: 'flex',
+													columnGap: '0.3rem',
+													alignContent: 'center',
+													justifyContent: 'center',
+													marginTop: '0.3rem',
+												}}
+											>
+												<button
+													style={{ backgroundColor: '#366EF1', color: '#fff' }}
+													onClick={() => {
+														data.staff = editStaff;
+														setEditStaff('');
+														setStaff(-1);
+													}}
+												>
+													Done
+												</button>
+												<button
+													onClick={() => {
+														setEditStaff('');
+														setStaff(-1);
+													}}
+												>
+													Cancel
+												</button>
+											</div>
+										</div>
+									)}
 								</td>
-								<td>
+
+								{/* follow ups */}
+								<td style={{ position: 'relative' }}>
 									<p
 										style={{
 											backgroundColor: '#FFF7CC',
@@ -433,15 +822,27 @@ const Table = () => {
 											display: 'flex',
 											justifyContent: 'space-between',
 											padding: '0.5rem',
+											columnGap: '0.3rem',
 										}}
 									>
-										<span>{data.FollowUp}</span>
+										<span
+											style={{
+												display: 'block',
+												overflow: 'hidden',
+												textOverflow: 'ellipsis',
+												whiteSpace: 'nowrap',
+												width: '4rem',
+											}}
+										>
+											{data.FollowUp}
+										</span>
 										<span
 											style={{
 												backgroundColor: '#366EF1',
 												padding: '0 0.3rem',
 												borderRadius: '5px',
 											}}
+											onClick={() => setFollow(index)}
 										>
 											<svg
 												xmlns='http://www.w3.org/2000/svg'
@@ -456,8 +857,311 @@ const Table = () => {
 											</svg>
 										</span>
 									</p>
+									{follow == index && (
+										<div className={classes.followUp}>
+											<p style={{ textAlign: 'center' }}>
+												Choose Follow Up Status
+											</p>
+
+											<div
+												style={{
+													height: '60%',
+													borderTop: '1px solid #E4E4E4',
+												}}
+												className={classes.staffNames}
+											>
+												<input
+													type='radio'
+													name='followUp'
+													id={'follow1' + index}
+													value='Pending'
+													onChange={(e) => setEditFollowUp(e.target.value)}
+												/>
+												<label htmlFor={'follow1' + index}>
+													<span>Pending</span>
+													<span
+														style={{
+															height: '1.2rem',
+															width: '1.2rem',
+															position: 'relative',
+															display: 'inline-block',
+														}}
+													>
+														<svg
+															xmlns='http://www.w3.org/2000/svg'
+															width='20'
+															height='20'
+															viewBox='0 0 20 20'
+														>
+															<path
+																id='check_box'
+																data-name='check box'
+																d='M18.722,4.5H6.278A1.777,1.777,0,0,0,4.5,6.278V18.722A1.777,1.777,0,0,0,6.278,20.5H18.722A1.777,1.777,0,0,0,20.5,18.722V6.278A1.777,1.777,0,0,0,18.722,4.5Zm-8,12.444L6.278,12.5l1.253-1.253,3.191,3.182,6.747-6.747,1.253,1.262Z'
+																transform='translate(-4.5 -4.5)'
+																fill='#366ef1'
+															/>
+														</svg>
+													</span>
+												</label>
+												<input
+													type='radio'
+													name='followUp'
+													id={'follow2' + index}
+													value='Canceled'
+													onChange={(e) => setEditFollowUp(e.target.value)}
+												/>
+												<label htmlFor={'follow2' + index}>
+													<span>Canceled</span>
+													<span
+														style={{
+															height: '1.2rem',
+															width: '1.2rem',
+															position: 'relative',
+															display: 'inline-block',
+														}}
+													>
+														<svg
+															xmlns='http://www.w3.org/2000/svg'
+															width='20'
+															height='20'
+															viewBox='0 0 20 20'
+														>
+															<path
+																id='check_box'
+																data-name='check box'
+																d='M18.722,4.5H6.278A1.777,1.777,0,0,0,4.5,6.278V18.722A1.777,1.777,0,0,0,6.278,20.5H18.722A1.777,1.777,0,0,0,20.5,18.722V6.278A1.777,1.777,0,0,0,18.722,4.5Zm-8,12.444L6.278,12.5l1.253-1.253,3.191,3.182,6.747-6.747,1.253,1.262Z'
+																transform='translate(-4.5 -4.5)'
+																fill='#366ef1'
+															/>
+														</svg>
+													</span>
+												</label>
+												<input
+													type='radio'
+													name='followUp'
+													id={'follow3' + index}
+													value='Confirmed'
+													onChange={(e) => setEditFollowUp(e.target.value)}
+												/>
+												<label htmlFor={'follow3' + index}>
+													<span>Confirmed</span>
+													<span
+														style={{
+															height: '1.2rem',
+															width: '1.2rem',
+															position: 'relative',
+															display: 'inline-block',
+														}}
+													>
+														<svg
+															xmlns='http://www.w3.org/2000/svg'
+															width='20'
+															height='20'
+															viewBox='0 0 20 20'
+														>
+															<path
+																id='check_box'
+																data-name='check box'
+																d='M18.722,4.5H6.278A1.777,1.777,0,0,0,4.5,6.278V18.722A1.777,1.777,0,0,0,6.278,20.5H18.722A1.777,1.777,0,0,0,20.5,18.722V6.278A1.777,1.777,0,0,0,18.722,4.5Zm-8,12.444L6.278,12.5l1.253-1.253,3.191,3.182,6.747-6.747,1.253,1.262Z'
+																transform='translate(-4.5 -4.5)'
+																fill='#366ef1'
+															/>
+														</svg>
+													</span>
+												</label>
+												<input
+													type='radio'
+													name='followUp'
+													id={'follow4' + index}
+													value='Call back'
+													onChange={(e) => setEditFollowUp(e.target.value)}
+												/>
+												<label htmlFor={'follow4' + index}>
+													<span>Call back</span>
+													<span
+														style={{
+															height: '1.2rem',
+															width: '1.2rem',
+															position: 'relative',
+															display: 'inline-block',
+														}}
+													>
+														<svg
+															xmlns='http://www.w3.org/2000/svg'
+															width='20'
+															height='20'
+															viewBox='0 0 20 20'
+														>
+															<path
+																id='check_box'
+																data-name='check box'
+																d='M18.722,4.5H6.278A1.777,1.777,0,0,0,4.5,6.278V18.722A1.777,1.777,0,0,0,6.278,20.5H18.722A1.777,1.777,0,0,0,20.5,18.722V6.278A1.777,1.777,0,0,0,18.722,4.5Zm-8,12.444L6.278,12.5l1.253-1.253,3.191,3.182,6.747-6.747,1.253,1.262Z'
+																transform='translate(-4.5 -4.5)'
+																fill='#366ef1'
+															/>
+														</svg>
+													</span>
+												</label>
+												<input
+													type='radio'
+													name='followUp'
+													id={'follow5' + index}
+													value='Unreachable'
+													onChange={(e) => setEditFollowUp(e.target.value)}
+												/>
+												<label htmlFor={'follow5' + index}>
+													<span>Unreachable</span>
+													<span
+														style={{
+															height: '1.2rem',
+															width: '1.2rem',
+															position: 'relative',
+															display: 'inline-block',
+														}}
+													>
+														<svg
+															xmlns='http://www.w3.org/2000/svg'
+															width='20'
+															height='20'
+															viewBox='0 0 20 20'
+														>
+															<path
+																id='check_box'
+																data-name='check box'
+																d='M18.722,4.5H6.278A1.777,1.777,0,0,0,4.5,6.278V18.722A1.777,1.777,0,0,0,6.278,20.5H18.722A1.777,1.777,0,0,0,20.5,18.722V6.278A1.777,1.777,0,0,0,18.722,4.5Zm-8,12.444L6.278,12.5l1.253-1.253,3.191,3.182,6.747-6.747,1.253,1.262Z'
+																transform='translate(-4.5 -4.5)'
+																fill='#366ef1'
+															/>
+														</svg>
+													</span>
+												</label>
+												<input
+													type='radio'
+													name='followUp'
+													id={'follow6' + index}
+													value='Switched Off'
+													onChange={(e) => setEditFollowUp(e.target.value)}
+												/>
+												<label htmlFor={'follow6' + index}>
+													<span>Switched Off</span>
+													<span
+														style={{
+															height: '1.2rem',
+															width: '1.2rem',
+															position: 'relative',
+															display: 'inline-block',
+														}}
+													>
+														<svg
+															xmlns='http://www.w3.org/2000/svg'
+															width='20'
+															height='20'
+															viewBox='0 0 20 20'
+														>
+															<path
+																id='check_box'
+																data-name='check box'
+																d='M18.722,4.5H6.278A1.777,1.777,0,0,0,4.5,6.278V18.722A1.777,1.777,0,0,0,6.278,20.5H18.722A1.777,1.777,0,0,0,20.5,18.722V6.278A1.777,1.777,0,0,0,18.722,4.5Zm-8,12.444L6.278,12.5l1.253-1.253,3.191,3.182,6.747-6.747,1.253,1.262Z'
+																transform='translate(-4.5 -4.5)'
+																fill='#366ef1'
+															/>
+														</svg>
+													</span>
+												</label>
+												<input
+													type='radio'
+													name='followUp'
+													id={'follow7' + index}
+													value='Wrong Number'
+													onChange={(e) => setEditFollowUp(e.target.value)}
+												/>
+												<label htmlFor={'follow7' + index}>
+													<span>Wrong Number</span>
+													<span
+														style={{
+															height: '1.2rem',
+															width: '1.2rem',
+															position: 'relative',
+															display: 'inline-block',
+														}}
+													>
+														<svg
+															xmlns='http://www.w3.org/2000/svg'
+															width='20'
+															height='20'
+															viewBox='0 0 20 20'
+														>
+															<path
+																id='check_box'
+																data-name='check box'
+																d='M18.722,4.5H6.278A1.777,1.777,0,0,0,4.5,6.278V18.722A1.777,1.777,0,0,0,6.278,20.5H18.722A1.777,1.777,0,0,0,20.5,18.722V6.278A1.777,1.777,0,0,0,18.722,4.5Zm-8,12.444L6.278,12.5l1.253-1.253,3.191,3.182,6.747-6.747,1.253,1.262Z'
+																transform='translate(-4.5 -4.5)'
+																fill='#366ef1'
+															/>
+														</svg>
+													</span>
+												</label>
+												<input
+													type='radio'
+													name='followUp'
+													id={'follow8' + index}
+													value='Busy'
+													onChange={(e) => setEditFollowUp(e.target.value)}
+												/>
+												<label htmlFor={'follow8' + index}>
+													<span>Busy</span>
+													<span
+														style={{
+															height: '1.2rem',
+															width: '1.2rem',
+															position: 'relative',
+															display: 'inline-block',
+														}}
+													>
+														<svg
+															xmlns='http://www.w3.org/2000/svg'
+															width='20'
+															height='20'
+															viewBox='0 0 20 20'
+														>
+															<path
+																id='check_box'
+																data-name='check box'
+																d='M18.722,4.5H6.278A1.777,1.777,0,0,0,4.5,6.278V18.722A1.777,1.777,0,0,0,6.278,20.5H18.722A1.777,1.777,0,0,0,20.5,18.722V6.278A1.777,1.777,0,0,0,18.722,4.5Zm-8,12.444L6.278,12.5l1.253-1.253,3.191,3.182,6.747-6.747,1.253,1.262Z'
+																transform='translate(-4.5 -4.5)'
+																fill='#366ef1'
+															/>
+														</svg>
+													</span>
+												</label>
+											</div>
+											<div
+												style={{
+													display: 'flex',
+													columnGap: '0.3rem',
+													alignContent: 'center',
+													justifyContent: 'center',
+													marginTop: '0.3rem',
+												}}
+											>
+												<button
+													onClick={() => {
+														data.FollowUp = editFollowUp;
+														setEditFollowUp('');
+														setFollow(-1);
+													}}
+													style={{ backgroundColor: '#366EF1', color: '#fff' }}
+												>
+													Done
+												</button>
+												<button onClick={() => setFollow(-1)}>Cancel</button>
+											</div>
+										</div>
+									)}
 								</td>
-								<td>
+
+								{/* delivery */}
+								<td style={{ position: 'relative' }}>
 									<p
 										style={{
 											backgroundColor: '#FFF7CC',
@@ -466,16 +1170,28 @@ const Table = () => {
 											borderRadius: '10px',
 											display: 'flex',
 											justifyContent: 'space-between',
+											columnGap: '0.3rem',
 											padding: '0.5rem',
 										}}
 									>
-										<span>{data.Delivery}</span>
+										<span
+											style={{
+												display: 'block',
+												overflow: 'hidden',
+												textOverflow: 'ellipsis',
+												whiteSpace: 'nowrap',
+												width: '4rem',
+											}}
+										>
+											{data.Delivery}
+										</span>
 										<span
 											style={{
 												backgroundColor: '#366EF1',
 												padding: '0 0.3rem',
 												borderRadius: '5px',
 											}}
+											onClick={() => setDeli(index)}
 										>
 											<svg
 												xmlns='http://www.w3.org/2000/svg'
@@ -490,7 +1206,211 @@ const Table = () => {
 											</svg>
 										</span>
 									</p>
+									{deli == index && (
+										<div className={classes.deli}>
+											<p style={{ textAlign: 'center' }}>
+												Choose Delivery Status
+											</p>
+
+											<div
+												style={{
+													height: '60%',
+													borderTop: '1px solid #E4E4E4',
+												}}
+												className={classes.staffNames}
+											>
+												<input
+													type='radio'
+													name='delivery'
+													id={'deli1' + index}
+													value='Pending'
+													onChange={(e) => setEditDelivery(e.target.value)}
+												/>
+												<label htmlFor={'deli1' + index}>
+													<span>Pending</span>
+													<span
+														style={{
+															height: '1.2rem',
+															width: '1.2rem',
+															position: 'relative',
+															display: 'inline-block',
+														}}
+													>
+														<svg
+															xmlns='http://www.w3.org/2000/svg'
+															width='20'
+															height='20'
+															viewBox='0 0 20 20'
+														>
+															<path
+																id='check_box'
+																data-name='check box'
+																d='M18.722,4.5H6.278A1.777,1.777,0,0,0,4.5,6.278V18.722A1.777,1.777,0,0,0,6.278,20.5H18.722A1.777,1.777,0,0,0,20.5,18.722V6.278A1.777,1.777,0,0,0,18.722,4.5Zm-8,12.444L6.278,12.5l1.253-1.253,3.191,3.182,6.747-6.747,1.253,1.262Z'
+																transform='translate(-4.5 -4.5)'
+																fill='#366ef1'
+															/>
+														</svg>
+													</span>
+												</label>
+												<input
+													type='radio'
+													name='delivery'
+													id={'deli2' + index}
+													value='Canceled'
+													onChange={(e) => setEditDelivery(e.target.value)}
+												/>
+												<label htmlFor={'deli2' + index}>
+													<span>Canceled</span>
+													<span
+														style={{
+															height: '1.2rem',
+															width: '1.2rem',
+															position: 'relative',
+															display: 'inline-block',
+														}}
+													>
+														<svg
+															xmlns='http://www.w3.org/2000/svg'
+															width='20'
+															height='20'
+															viewBox='0 0 20 20'
+														>
+															<path
+																id='check_box'
+																data-name='check box'
+																d='M18.722,4.5H6.278A1.777,1.777,0,0,0,4.5,6.278V18.722A1.777,1.777,0,0,0,6.278,20.5H18.722A1.777,1.777,0,0,0,20.5,18.722V6.278A1.777,1.777,0,0,0,18.722,4.5Zm-8,12.444L6.278,12.5l1.253-1.253,3.191,3.182,6.747-6.747,1.253,1.262Z'
+																transform='translate(-4.5 -4.5)'
+																fill='#366ef1'
+															/>
+														</svg>
+													</span>
+												</label>
+												<input
+													type='radio'
+													name='delivery'
+													id={'deli3' + index}
+													value='Delivered'
+													onChange={(e) => setEditDelivery(e.target.value)}
+												/>
+												<label htmlFor={'deli3' + index}>
+													<span>Delivered</span>
+													<span
+														style={{
+															height: '1.2rem',
+															width: '1.2rem',
+															position: 'relative',
+															display: 'inline-block',
+														}}
+													>
+														<svg
+															xmlns='http://www.w3.org/2000/svg'
+															width='20'
+															height='20'
+															viewBox='0 0 20 20'
+														>
+															<path
+																id='check_box'
+																data-name='check box'
+																d='M18.722,4.5H6.278A1.777,1.777,0,0,0,4.5,6.278V18.722A1.777,1.777,0,0,0,6.278,20.5H18.722A1.777,1.777,0,0,0,20.5,18.722V6.278A1.777,1.777,0,0,0,18.722,4.5Zm-8,12.444L6.278,12.5l1.253-1.253,3.191,3.182,6.747-6.747,1.253,1.262Z'
+																transform='translate(-4.5 -4.5)'
+																fill='#366ef1'
+															/>
+														</svg>
+													</span>
+												</label>
+												<input
+													type='radio'
+													name='delivery'
+													id={'deli4' + index}
+													value='In Transit'
+													onChange={(e) => setEditDelivery(e.target.value)}
+												/>
+												<label htmlFor={'deli4' + index}>
+													<span>In transit</span>
+													<span
+														style={{
+															height: '1.2rem',
+															width: '1.2rem',
+															position: 'relative',
+															display: 'inline-block',
+														}}
+													>
+														<svg
+															xmlns='http://www.w3.org/2000/svg'
+															width='20'
+															height='20'
+															viewBox='0 0 20 20'
+														>
+															<path
+																id='check_box'
+																data-name='check box'
+																d='M18.722,4.5H6.278A1.777,1.777,0,0,0,4.5,6.278V18.722A1.777,1.777,0,0,0,6.278,20.5H18.722A1.777,1.777,0,0,0,20.5,18.722V6.278A1.777,1.777,0,0,0,18.722,4.5Zm-8,12.444L6.278,12.5l1.253-1.253,3.191,3.182,6.747-6.747,1.253,1.262Z'
+																transform='translate(-4.5 -4.5)'
+																fill='#366ef1'
+															/>
+														</svg>
+													</span>
+												</label>
+												<input
+													type='radio'
+													name='delivery'
+													id={'deli5' + index}
+													value='Undelivered'
+													onChange={(e) => setEditDelivery(e.target.value)}
+												/>
+												<label htmlFor={'deli5' + index}>
+													<span>Undelivered</span>
+													<span
+														style={{
+															height: '1.2rem',
+															width: '1.2rem',
+															position: 'relative',
+															display: 'inline-block',
+														}}
+													>
+														<svg
+															xmlns='http://www.w3.org/2000/svg'
+															width='20'
+															height='20'
+															viewBox='0 0 20 20'
+														>
+															<path
+																id='check_box'
+																data-name='check box'
+																d='M18.722,4.5H6.278A1.777,1.777,0,0,0,4.5,6.278V18.722A1.777,1.777,0,0,0,6.278,20.5H18.722A1.777,1.777,0,0,0,20.5,18.722V6.278A1.777,1.777,0,0,0,18.722,4.5Zm-8,12.444L6.278,12.5l1.253-1.253,3.191,3.182,6.747-6.747,1.253,1.262Z'
+																transform='translate(-4.5 -4.5)'
+																fill='#366ef1'
+															/>
+														</svg>
+													</span>
+												</label>
+											</div>
+
+											<div
+												style={{
+													display: 'flex',
+													columnGap: '0.3rem',
+													alignContent: 'center',
+													justifyContent: 'center',
+													marginTop: '0.3rem',
+												}}
+											>
+												<button
+													onClick={() => {
+														data.Delivery = editDelivery;
+														setEditDelivery('');
+														setDeli(-1);
+													}}
+													style={{ backgroundColor: '#366EF1', color: '#fff' }}
+												>
+													Done
+												</button>
+												<button onClick={() => setDeli(-1)}>Cancel</button>
+											</div>
+										</div>
+									)}
 								</td>
+
 								<td style={{ padding: '0.4rem' }}>
 									<p>
 										<CircularProgressbar
@@ -514,6 +1434,7 @@ const Table = () => {
 												text: {
 													fill: '#333333',
 													fontSize: '2rem',
+													fontWeight: '600',
 												},
 
 												background: {
@@ -546,6 +1467,7 @@ const Table = () => {
 												text: {
 													fill: '#333333',
 													fontSize: '2rem',
+													fontWeight: '600',
 												},
 
 												background: {

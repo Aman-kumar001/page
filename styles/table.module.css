@@ -35,6 +35,7 @@
 .infoLeft :nth-child(1) {
 	font-size: 2rem;
 	font-weight: 600;
+	color: #333333;
 }
 .infoLeft :nth-child(2) {
 	font-size: 0.9rem;
@@ -63,6 +64,8 @@
 	border-collapse: separate;
 	border-spacing: 0rem 1rem;
 	border-radius: 1rem;
+	color: #333333;
+	background-color: rgba(0, 0, 0, 0);
 }
 .tb tr {
 	background-color: #f4f4f9;
@@ -95,6 +98,13 @@
 	font-weight: 400;
 	background: #366ef1;
 }
+.head:first-child div {
+	/* background-color: red; */
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-image: url('../public/table/check_box.svg');
+}
 .tb td {
 	font-size: 0.8rem;
 	text-align: center;
@@ -108,9 +118,175 @@
 	background-repeat: no-repeat;
 	background-size: cover;
 }
-.tb th input[type='checkbox']:checked + label {
-	background-image: url('../public/table/check\ box.svg');
-	background-position: center;
-	background-repeat: no-repeat;
-	background-size: cover;
+.status {
+	width: 150%;
+	position: absolute;
+	box-shadow: -10px 16px 32px #00000021;
+	display: flex;
+	flex-direction: column;
+	background: #fff;
+	top: 50%;
+	left: 100%;
+	padding: 0.5rem;
+	border-radius: 10px;
+	z-index: 100;
+}
+.status label {
+	text-align: left;
+	padding: 0.5rem;
+	font-size: 0.9rem;
+	border-radius: 10px;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.status label span:last-child {
+	opacity: 0;
+}
+.status input {
+	display: none;
+}
+.status input:nth-child(1):checked + label {
+	background: #ceffcc;
+}
+.status input:nth-child(3):checked + label {
+	background: #eceef1;
+}
+.status input:nth-child(1):checked + label span:last-child {
+	opacity: 1;
+}
+.status input:nth-child(3):checked + label span:last-child {
+	opacity: 1;
+}
+.status button {
+	border: none;
+	padding: 0.3rem;
+}
+
+.staff {
+	position: absolute;
+	width: 150%;
+	top: 50%;
+	left: 100%;
+	padding: 0.5rem;
+	height: 150%;
+	background: #ffffff 0% 0% no-repeat padding-box;
+	box-shadow: -10px 16px 32px #00000021;
+	border-radius: 10px;
+	z-index: 100;
+}
+.staffNames {
+	height: 80%;
+	overflow-y: scroll;
+	scrollbar-width: thin;
+	scrollbar-color: #0670ed #004cff38;
+}
+.staff input {
+	display: none;
+}
+.staff label {
+	display: block;
+	margin: 0.2rem 0;
+	text-align: left;
+	font-size: 0.9rem;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 0.4rem;
+}
+.staff label :nth-child(2) {
+	opacity: 0;
+}
+
+.staff :nth-child(1):checked + label,
+.staff :nth-child(3):checked + label,
+.staff :nth-child(5):checked + label,
+.staff :nth-child(7):checked + label,
+.staff :nth-child(9):checked + label {
+	background: #eceef1 0% 0% no-repeat padding-box;
+	border-radius: 10px;
+}
+.staff :nth-child(1):checked + label span:nth-child(2),
+.staff :nth-child(5):checked + label span:nth-child(2),
+.staff :nth-child(3):checked + label span:nth-child(2),
+.staff :nth-child(7):checked + label span:nth-child(2),
+.staff :nth-child(9):checked + label span:nth-child(2) {
+	opacity: 1;
+}
+
+.staff button,
+.followUp button,
+.deli button {
+	border: none;
+	padding: 0.3rem;
+	border-radius: 4px;
+	color: #707070;
+	background-color: #fff;
+}
+.followUp,
+.deli {
+	position: absolute;
+	height: 180%;
+	width: 150%;
+	top: 50%;
+	left: 100%;
+	background-color: #fff;
+	box-shadow: -10px 16px 32px #00000021;
+	z-index: 100;
+	border-radius: 10px;
+}
+
+.followUp input,
+.deli input {
+	display: none;
+}
+.followUp label,
+.deli label {
+	display: flex;
+	padding: 0.7rem;
+	align-items: center;
+	justify-content: space-between;
+}
+.followUp label :nth-child(2),
+.deli label :nth-child(2) {
+	opacity: 0;
+}
+
+.followUp :nth-child(1):checked + label,
+.followUp :nth-child(3):checked + label,
+.followUp :nth-child(5):checked + label,
+.followUp :nth-child(7):checked + label,
+.followUp :nth-child(9):checked + label,
+.followUp :nth-child(11):checked + label,
+.followUp :nth-child(13):checked + label,
+.followUp :nth-child(15):checked + label {
+	background: #eceef1 0% 0% no-repeat padding-box;
+	border-radius: 10px;
+}
+.followUp :nth-child(1):checked + label span:nth-child(2),
+.followUp :nth-child(5):checked + label span:nth-child(2),
+.followUp :nth-child(3):checked + label span:nth-child(2),
+.followUp :nth-child(7):checked + label span:nth-child(2),
+.followUp :nth-child(9):checked + label span:nth-child(2),
+.followUp :nth-child(11):checked + label span:nth-child(2),
+.followUp :nth-child(13):checked + label span:nth-child(2),
+.followUp :nth-child(15):checked + label span:nth-child(2) {
+	opacity: 1;
+}
+.deli :nth-child(1):checked + label span:nth-child(2),
+.deli :nth-child(5):checked + label span:nth-child(2),
+.deli :nth-child(3):checked + label span:nth-child(2),
+.deli :nth-child(7):checked + label span:nth-child(2),
+.deli :nth-child(9):checked + label span:nth-child(2) {
+	opacity: 1;
+}
+
+.deli :nth-child(1):checked + label,
+.deli :nth-child(3):checked + label,
+.deli :nth-child(5):checked + label,
+.deli :nth-child(7):checked + label,
+.deli :nth-child(9):checked + label {
+	background: #eceef1 0% 0% no-repeat padding-box;
+	border-radius: 10px;
 }

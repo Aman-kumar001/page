@@ -32,10 +32,11 @@
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	position: relative;
 }
 .ftrs p:hover {
 	color: #fff !important;
-	background-color: blue;
+	background-color: #366ef1;
 }
 .ftrs p svg path {
 	fill: #707070;
@@ -69,4 +70,28 @@
 }
 .infos p:nth-child(3):hover > svg path {
 	fill: #366ef1;
+}
+.dropdowns {
+	background: #ffffff 0% 0% no-repeat padding-box;
+	box-shadow: 12px 24px 38px #0000001c;
+	position: absolute;
+	width: 200%;
+	left: 0;
+	top: 100%;
+	padding: 1rem 1rem;
+	border-radius: 10px;
+	height: auto;
+}
+.dropdowns p {
+	text-align: left;
+	padding: 0.5rem 1rem;
+	margin: 0;
+	display: block;
+	font-size: 0.8rem;
+	font-weight: 600;
+}
+.dropdowns p:hover {
+	color: #366ef1 !important;
+	background-color: #eceef1;
+	cursor: pointer;
 }

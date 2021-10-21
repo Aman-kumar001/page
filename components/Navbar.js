@@ -3,14 +3,41 @@ import Image from 'next/dist/client/image';
 import user from '../public/nav/user.svg';
 import noti from '../public/nav/noti.svg';
 import wallet from '../public/nav/wallet.svg';
+import { useState } from 'react';
 
 const Navbar = () => {
+	const [fst, setFirst] = useState(false);
+	const [sec, setsec] = useState(false);
+	const [thd, setThd] = useState(false);
+	const [frth, setFrth] = useState(false);
+	const [fiv, setFiv] = useState(false);
+	const [six, setSix] = useState(false);
+	const [sev, setSev] = useState(false);
+	const [eth, setEth] = useState(false);
+	const [user, setUser] = useState(false);
+
+	// const unset = () => {
+	// 	setFirst(false);
+	// 	setFiv(false);
+	// 	setFrth(false);
+	// 	setSev(false);
+	// 	setsec(false);
+	// 	setSix(false);
+	// 	setEth(false);
+	// 	setThd(false);
+	// };
+
 	return (
 		<div className={classes.cont}>
 			<div className={classes.body}>
 				<div className={classes.logo}>LOGO HERE</div>
 				<div className={classes.ftrs}>
-					<p>
+					<p
+						onMouseEnter={() => {
+							setFirst(true);
+						}}
+						onMouseLeave={() => setFirst(false)}
+					>
 						<span>
 							<svg
 								xmlns='http://www.w3.org/2000/svg'
@@ -26,8 +53,21 @@ const Navbar = () => {
 							</svg>{' '}
 							Orders
 						</span>
+						{fst && (
+							<div className={classes.dropdowns}>
+								<p>&#62; Create Orders</p>
+								<p>&#62; All Orders</p>
+								<p>&#62; Abondend Cart</p>
+								<p>&#62; All Customers</p>
+							</div>
+						)}
 					</p>
-					<p>
+					<p
+						onMouseEnter={() => {
+							setsec(true);
+						}}
+						onMouseLeave={() => setsec(false)}
+					>
 						<span>
 							<svg
 								xmlns='http://www.w3.org/2000/svg'
@@ -44,8 +84,21 @@ const Navbar = () => {
 							</svg>{' '}
 							Shipments
 						</span>
+						{sec && (
+							<div className={classes.dropdowns}>
+								<p>&#62; All Shipments</p>
+								<p>&#62; Shipments Slips</p>
+								<p>&#62; All NDR</p>
+								<p>&#62; Weight Discrepancy</p>
+							</div>
+						)}
 					</p>
-					<p>
+					<p
+						onMouseEnter={() => {
+							setThd(true);
+						}}
+						onMouseLeave={() => setThd(false)}
+					>
 						<span>
 							<svg
 								xmlns='http://www.w3.org/2000/svg'
@@ -62,8 +115,21 @@ const Navbar = () => {
 							</svg>{' '}
 							Stores
 						</span>
+						{thd && (
+							<div className={classes.dropdowns}>
+								<p>&#62; Warehouses</p>
+								<p>&#62; Products</p>
+								<p>&#62; Inventory</p>
+								<p>&#62; Channels</p>
+							</div>
+						)}
 					</p>
-					<p>
+					<p
+						onMouseEnter={() => {
+							setFrth(true);
+						}}
+						onMouseLeave={() => setFrth(false)}
+					>
 						<span>
 							<svg
 								xmlns='http://www.w3.org/2000/svg'
@@ -80,8 +146,20 @@ const Navbar = () => {
 							</svg>{' '}
 							Staffs
 						</span>
+						{frth && (
+							<div className={classes.dropdowns}>
+								<p>&#62; All Members</p>
+								<p>&#62; Role Group</p>
+								<p>&#62; Assign Orders</p>
+							</div>
+						)}
 					</p>
-					<p>
+					<p
+						onMouseEnter={() => {
+							setFiv(true);
+						}}
+						onMouseLeave={() => setFiv(false)}
+					>
 						<span>
 							<svg
 								xmlns='http://www.w3.org/2000/svg'
@@ -97,10 +175,25 @@ const Navbar = () => {
 							</svg>{' '}
 							Biling
 						</span>
+						{fiv && (
+							<div className={classes.dropdowns}>
+								<p>&#62; Shipping Plans</p>
+								<p>&#62; Shipping Rate Calculator</p>
+								<p>&#62; COD Remittance</p>
+								<p>&#62; Wallet Transactions</p>
+								<p>&#62; Shipping Charges</p>
+							</div>
+						)}
 					</p>
 
 					{/* problem here */}
-					<p style={{ display: 'flex', alignContent: 'center' }}>
+					<p
+						onMouseEnter={() => {
+							setSix(true);
+						}}
+						onMouseLeave={() => setSix(false)}
+						style={{ display: 'flex', alignContent: 'center' }}
+					>
 						<span>
 							<svg
 								xmlns='http://www.w3.org/2000/svg'
@@ -119,7 +212,13 @@ const Navbar = () => {
 					</p>
 					{/* problem above */}
 
-					<p style={{ marginLeft: '1rem' }}>
+					<p
+						onMouseEnter={() => {
+							setSev(true);
+						}}
+						onMouseLeave={() => setSev(false)}
+						style={{ marginLeft: '1rem' }}
+					>
 						<span>
 							<svg
 								xmlns='http://www.w3.org/2000/svg'
@@ -137,7 +236,12 @@ const Navbar = () => {
 							Reports
 						</span>
 					</p>
-					<p>
+					<p
+						onMouseEnter={() => {
+							setEth(true);
+						}}
+						onMouseLeave={() => setEth(false)}
+					>
 						<span>
 							<svg
 								xmlns='http://www.w3.org/2000/svg'
