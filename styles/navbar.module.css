@@ -95,3 +95,30 @@
 	background-color: #eceef1;
 	cursor: pointer;
 }
+.userPanel {
+	position: absolute;
+	height: auto;
+	width: 10rem;
+	background-color: #fff;
+	right: 0;
+	top: 100%;
+	font-size: 0.8rem;
+	border-radius: 10px;
+	box-shadow: 12px 9px 38px #00000014;
+}
+.userPanel p {
+	color: #707070;
+}
+.userPanel p:hover {
+	background-color: #eceef1;
+	color: #366ef1;
+	border-radius: 10px;
+}
+.userPanel p:last-child {
+	border: 1px solid #fff;
+}
+.userPanel p:last-child:hover {
+	background-color: #fff;
+	border: 1px solid #ff002b;
+	color: #ff002b;
+}

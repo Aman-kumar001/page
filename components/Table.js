@@ -5,6 +5,7 @@ import { CircularProgressbar } from 'react-circular-progressbar';
 import Image from 'next/dist/client/image';
 import Shopify from '../public/table/shopify.svg';
 import 'react-circular-progressbar/dist/styles.css';
+import Action from './Action';
 const Table = () => {
 	const [editDims, setEditDims] = useState(false);
 	const [editStatus, setEditStatus] = useState('');
@@ -19,7 +20,8 @@ const Table = () => {
 	const [follow, setFollow] = useState(-1);
 	const [deli, setDeli] = useState(-1);
 	const [dims, setDims] = useState(-1);
-
+	const [filter, setFilter] = useState(false);
+	const [action, setAction] = useState(false);
 	const [data, setData] = useState([
 		{
 			id: '#123123',
@@ -60,19 +62,22 @@ const Table = () => {
 			staff: 'D.mathews',
 			FollowUp: 'pending',
 			Delivery: 'Pending',
-			CS: 3,
-			DS: 7,
+			CS: 9,
+			DS: 4,
 		},
 	]);
 	return (
 		<div className={classes.container}>
 			<Navbar />
 			<div className={classes.pageInfo}>
+				{action && <Action setAction={setAction} />}
 				<div className={classes.infoLeft}>
 					<p>Orders</p>
 					<p>1 ORDER SELECTED</p>
 					<p>
-						<span> Take Actions</span>
+						<span style={{ cursor: 'pointer' }} onClick={() => setAction(true)}>
+							Take Actions
+						</span>
 					</p>
 				</div>
 				<div className={classes.infoRight}>
@@ -83,6 +88,7 @@ const Table = () => {
 							border: 'none',
 							padding: '0.2rem 0.2rem',
 							color: '#707070',
+							outline: 'none',
 						}}
 						type='date'
 						name='date'
@@ -110,6 +116,13 @@ const Table = () => {
 							justifyContent: 'center',
 							alignItems: 'center',
 							borderRadius: '8px',
+							backgroundColor: `${filter ? '#366ef1' : '#fff'}`,
+						}}
+						onClick={() => {
+							if (!filter) setFilter(true);
+							else {
+								setFilter(false);
+							}
 						}}
 					>
 						<svg
@@ -132,7 +145,7 @@ const Table = () => {
 								data-name='filter icon'
 								d='M11.437,0H.563a.563.563,0,0,0-.4.96L4.5,5.3v4.83a.563.563,0,0,0,.24.461L6.615,11.9a.563.563,0,0,0,.885-.461V5.3L11.835.96A.563.563,0,0,0,11.437,0Z'
 								transform='translate(6 6)'
-								fill='#366ef1'
+								fill={filter ? '#fff' : '#366ef1'}
 							/>
 						</svg>
 					</span>
@@ -185,6 +198,139 @@ const Table = () => {
 					</button>
 				</div>
 			</div>
+			{filter && (
+				<div className={classes.filter}>
+					<div className={classes.filterLeft}>
+						<p
+							style={{
+								textAlign: 'left',
+								fontSize: '2rem',
+								margin: '0.5rem',
+								fontWeight: '600',
+								color: '#333333',
+							}}
+						>
+							Filter
+						</p>
+						<div style={{ paddingLeft: '1rem', fontSize: '0.8rem' }}>
+							<p
+								style={{
+									backgroundColor: '#ECEEF1',
+
+									padding: '0.5rem',
+									margin: '0',
+								}}
+							>
+								Order Id
+							</p>
+							<p>Domain</p>
+							<p>Phone No</p>
+						</div>
+						<p style={{ color: '#477eff', fontSize: '0.6rem' }}>STATUS</p>
+						<div style={{ paddingLeft: '1rem', fontSize: '0.8rem' }}>
+							<p>Payment</p>
+							<p>Follow Up</p>
+							<p>Delivery</p>
+						</div>
+						<p style={{ color: '#477eff', fontSize: '0.6rem' }}>CUSTOMER</p>
+						<div style={{ paddingLeft: '1rem', fontSize: '0.8rem' }}>
+							<p>Name</p>
+							<p>Email Id</p>
+							<p>Phone No.</p>
+							<p>Staff</p>
+						</div>
+					</div>
+					<div className={classes.filterRight}>
+						<div
+							style={{
+								height: '4rem',
+								borderBottom: '1px solid #70707020',
+								display: 'flex',
+								alignItems: 'center',
+								justifyContent: 'right',
+								columnGap: '0.2rem',
+							}}
+						>
+							<button>Clear</button>
+							<button
+								style={{
+									backgroundColor: '#477eff',
+									color: '#fff',
+								}}
+							>
+								Apply
+							</button>
+						</div>
+						<div>
+							<p style={{ textAlign: 'center' }}>
+								<input type='text' name='' id='' placeholder='Enter Order Id' />
+								<button
+									style={{
+										backgroundColor: '#fff',
+										color: '#477eff',
+										fontWeight: '600',
+									}}
+								>
+									ADD
+								</button>
+							</p>
+						</div>
+						<div style={{ marginTop: '2rem', padding: '1rem' }}>
+							<p
+								style={{
+									display: 'flex',
+									justifyContent: 'space-between',
+									alignItems: 'center',
+									border: '1px solid #F5F5F5',
+									padding: '0.5rem 0.5rem',
+									borderRadius: '10px',
+									margin: '0.4rem 0',
+								}}
+							>
+								<span style={{ color: '#477eff', fontWeight: '600' }}>
+									#123456
+								</span>
+								<span style={{ color: '#707070' }}>1x Arm Chair</span>
+								<span style={{ color: '#707070' }}>x</span>
+							</p>
+							<p
+								style={{
+									display: 'flex',
+									justifyContent: 'space-between',
+									alignItems: 'center',
+									border: '1px solid #F5F5F5',
+									padding: '0.5rem 0.5rem',
+									borderRadius: '10px',
+									margin: ' 0.4rem 0',
+								}}
+							>
+								<span style={{ color: '#477eff', fontWeight: '600' }}>
+									#123456
+								</span>
+								<span style={{ color: '#707070' }}>1x Arm Chair</span>
+								<span style={{ color: '#707070' }}>x</span>
+							</p>
+							<p
+								style={{
+									display: 'flex',
+									justifyContent: 'space-between',
+									alignItems: 'center',
+									border: '1px solid #F5F5F5',
+									padding: '0.5rem 0.5rem',
+									borderRadius: '10px',
+									margin: '0.4rem 0',
+								}}
+							>
+								<span style={{ color: '#477eff', fontWeight: '600' }}>
+									#123456
+								</span>
+								<span style={{ color: '#707070' }}>1x Arm Chair</span>
+								<span style={{ color: '#707070' }}>x</span>
+							</p>
+						</div>
+					</div>
+				</div>
+			)}
 			<div className={classes.table}>
 				<table cellSpacing='0' className={classes.tb}>
 					<tr className={classes.head} style={{ marginBottom: '1rem' }}>
@@ -243,7 +389,13 @@ const Table = () => {
 								</td>
 
 								{/* time & id */}
-								<td style={{ display: 'flex', columnGap: '0.4rem' }}>
+								<td
+									style={{
+										display: 'flex',
+										columnGap: '0.4rem',
+										textAlign: 'left',
+									}}
+								>
 									<div>
 										<p>{data.id}</p>
 										<p
@@ -293,7 +445,18 @@ const Table = () => {
 
 								{/* shopify */}
 								<td>
-									<p>{data.shopify}</p>
+									<p
+										style={{
+											display: 'block',
+											overflow: 'hidden',
+											textOverflow: 'ellipsis',
+											whiteSpace: 'nowrap',
+											width: '5rem',
+											// border: '1px solid black',
+										}}
+									>
+										{data.shopify}
+									</p>
 									<p>
 										<Image src={Shopify} height={24} width={24} />
 									</p>
@@ -590,7 +753,7 @@ const Table = () => {
 															setStatus(-1);
 														}}
 													>
-														DONE
+														Done
 													</button>
 													<button
 														style={{
@@ -1242,7 +1405,7 @@ const Table = () => {
 													}}
 													style={{ backgroundColor: '#366EF1', color: '#fff' }}
 												>
-													Done
+													Confirm
 												</button>
 												<button onClick={() => setFollow(-1)}>Cancel</button>
 											</div>
@@ -1493,7 +1656,7 @@ const Table = () => {
 													}}
 													style={{ backgroundColor: '#366EF1', color: '#fff' }}
 												>
-													Done
+													Confirm
 												</button>
 												<button onClick={() => setDeli(-1)}>Cancel</button>
 											</div>
@@ -1510,7 +1673,7 @@ const Table = () => {
 												root: {},
 
 												path: {
-													stroke: `#FF002B`,
+													stroke: `${data.CS > 5 ? '#34D12F' : '#FF002B'}`,
 													strokeLinecap: 'round',
 													transformOrigin: 'center center',
 												},
@@ -1543,7 +1706,7 @@ const Table = () => {
 												root: {},
 
 												path: {
-													stroke: `#34D12F`,
+													stroke: `${data.DS > 5 ? '#34D12F' : '#FF002B'}`,
 													strokeLinecap: 'round',
 													transformOrigin: 'center center',
 												},

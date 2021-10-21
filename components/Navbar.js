@@ -281,12 +281,16 @@ const Navbar = () => {
 					<p>
 						<Image src={noti} />
 					</p>
-					<p>
+					<p
+						style={{ position: 'relative' }}
+						onMouseLeave={() => setUser(false)}
+					>
 						<svg
 							xmlns='http://www.w3.org/2000/svg'
 							width='20'
 							height='20'
 							viewBox='0 0 20 20'
+							onMouseEnter={() => setUser(true)}
 						>
 							<path
 								id='user_icon'
@@ -296,6 +300,81 @@ const Navbar = () => {
 								fill='#707070'
 							/>
 						</svg>
+						{user && (
+							<div className={classes.userPanel}>
+								<div
+									style={{
+										display: 'flex',
+										padding: '1rem',
+										justifyContent: 'space-between',
+										backgroundColor: '#2C67F1',
+										alignItems: 'center',
+										borderTopLeftRadius: '10px',
+										borderTopRightRadius: '10px',
+									}}
+								>
+									<div>
+										<svg
+											xmlns='http://www.w3.org/2000/svg'
+											width='20'
+											height='20'
+											viewBox='0 0 20 20'
+										>
+											<path
+												id='user_icon'
+												data-name='user icon'
+												d='M16,16a5,5,0,1,0-5-5A5,5,0,0,0,16,16Zm0,2.5c-3.337,0-10,1.675-10,5V26H26V23.5C26,20.175,19.338,18.5,16,18.5Z'
+												transform='translate(-6 -6)'
+												fill='#FFF'
+											/>
+										</svg>
+									</div>
+									<div style={{ color: '#fff' }}>Aman Kumar</div>
+								</div>
+								<div
+									style={{
+										width: '100%',
+										padding: '0.5rem',
+										borderRadius: '10px',
+									}}
+								>
+									<p
+										style={{
+											justifyContent: 'left',
+											padding: '0.5rem',
+											margin: 0,
+										}}
+									>
+										Edit Profile
+									</p>
+									<p
+										style={{
+											justifyContent: 'left',
+											padding: '0.5rem',
+											margin: 0,
+										}}
+									>
+										Wallet
+									</p>
+									<p
+										style={{
+											justifyContent: 'left',
+											padding: '0.5rem',
+											margin: 0,
+										}}
+									>
+										Settings
+									</p>
+									<p
+										style={{
+											padding: '0.5rem',
+										}}
+									>
+										LOG OUT
+									</p>
+								</div>
+							</div>
+						)}
 					</p>
 				</div>
 			</div>

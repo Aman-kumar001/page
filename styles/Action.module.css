@@ -1,0 +1,30 @@
+.cont {
+	height: 80vh;
+	width: 80vw;
+	position: absolute;
+	top: 10vh;
+	left: 10vw;
+	z-index: 100;
+	border-radius: 10px;
+	background: #ffffff 0% 0% no-repeat padding-box;
+	box-shadow: 0px 26px 81px #0000005c;
+	padding: 2rem 1rem;
+	color: #333333;
+}
+.cont button {
+	height: 2rem;
+	width: 6rem;
+	border: none;
+	border-radius: 8px;
+}
+
+.card p {
+	text-align: left;
+	font-weight: 500;
+}
+.scroll {
+	height: 30vh;
+	overflow-y: scroll;
+	scrollbar-width: thin;
+	scrollbar-color: #0670ed #004cff38;
+}
