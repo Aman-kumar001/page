@@ -18,6 +18,7 @@ const Table = () => {
 	const [staff, setStaff] = useState(-1);
 	const [follow, setFollow] = useState(-1);
 	const [deli, setDeli] = useState(-1);
+	const [dims, setDims] = useState(-1);
 
 	const [data, setData] = useState([
 		{
@@ -306,7 +307,7 @@ const Table = () => {
 											overflow: 'hidden',
 											textOverflow: 'ellipsis',
 											whiteSpace: 'nowrap',
-											width: '6rem',
+											width: '4rem',
 											// border: '1px solid black',
 										}}
 									>
@@ -316,7 +317,7 @@ const Table = () => {
 								</td>
 
 								{/* dimensions */}
-								<td>
+								<td style={{ position: 'relative' }}>
 									<p
 										style={{
 											display: 'flex',
@@ -329,13 +330,14 @@ const Table = () => {
 												whiteSpace: 'nowrap',
 												overflow: 'hidden',
 												textOverflow: 'ellipsis',
-												width: '5.5rem',
+												width: '5rem',
 											}}
 										>
 											{data.dims}
 										</span>
 										<span>
 											<span
+												onClick={() => setDims(index)}
 												style={{
 													backgroundColor: '#366EF1',
 													padding: '0 0.3rem',
@@ -358,6 +360,94 @@ const Table = () => {
 									</p>
 									<p>Volumetric : {data.Volume} Kg</p>
 									<p>Entered : {data.Entered} Kg</p>
+
+									{dims == index && (
+										<div className={classes.dims}>
+											<div>
+												<div
+													style={{
+														textAlign: 'left',
+														fontSize: '0.8rem',
+														margin: '0.5rem 0',
+													}}
+												>
+													<input
+														type='radio'
+														name=''
+														id=''
+														style={{ margin: 0 }}
+													/>
+													<label htmlFor=''>Use Original Dimensions</label>
+												</div>
+												<div
+													style={{
+														textAlign: 'left',
+														fontSize: '0.8rem',
+														margin: '0.5rem 0',
+													}}
+												>
+													<input
+														type='radio'
+														name=''
+														id=''
+														style={{ margin: 0 }}
+													/>
+													<label htmlFor=''>Add Custom Dimensions</label>
+												</div>
+											</div>
+											<div>
+												<p
+													style={{
+														margin: '0',
+														textAlign: 'left',
+														fontSize: '0.7rem',
+													}}
+												>
+													Dimensions
+												</p>
+												<div style={{ display: 'flex', columnGap: '10%' }}>
+													<input type='text' />
+													<input type='text' />
+													<input type='text' />
+												</div>
+											</div>
+											<div>
+												<p
+													style={{
+														margin: '0',
+														textAlign: 'left',
+														fontSize: '0.7rem',
+														marginTop: '1rem',
+													}}
+												>
+													Volumetric
+												</p>
+												<div style={{ display: 'flex', columnGap: '10%' }}>
+													<input type='text' />
+												</div>
+											</div>
+											<div
+												style={{
+													display: 'flex',
+													columnGap: '1rem',
+													justifyContent: 'center',
+													margin: '0.5rem 0',
+												}}
+											>
+												<button
+													style={{
+														background: '#366EF1 0% 0% no-repeat padding-box',
+														borderRadius: '4px',
+														color: '#fff',
+													}}
+													onClick={() => setDims(-1)}
+												>
+													Done
+												</button>
+												<button onClick={() => setDims(-1)}>Cancel</button>
+											</div>
+										</div>
+									)}
 								</td>
 
 								{/* status */}
@@ -490,7 +580,7 @@ const Table = () => {
 													<button
 														style={{
 															background: '#366EF1 0% 0% no-repeat padding-box',
-															borderRadius: '3px',
+															borderRadius: '4px',
 															color: '#fff',
 														}}
 														onClick={(e) => {

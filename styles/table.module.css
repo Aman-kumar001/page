@@ -69,6 +69,7 @@
 }
 .tb tr {
 	background-color: #f4f4f9;
+	cursor: pointer;
 }
 .tb tr td {
 	background-color: #fff;
@@ -217,7 +218,8 @@
 
 .staff button,
 .followUp button,
-.deli button {
+.deli button,
+.dims button {
 	border: none;
 	padding: 0.3rem;
 	border-radius: 4px;
@@ -230,7 +232,7 @@
 	height: 180%;
 	width: 150%;
 	top: 50%;
-	left: 100%;
+	left: 50%;
 	background-color: #fff;
 	box-shadow: -10px 16px 32px #00000021;
 	z-index: 100;
@@ -289,4 +291,19 @@
 .deli :nth-child(9):checked + label {
 	background: #eceef1 0% 0% no-repeat padding-box;
 	border-radius: 10px;
+}
+
+.dims {
+	position: absolute;
+	width: 180%;
+	top: 50%;
+	left: 100%;
+	z-index: 100;
+	background-color: #fff;
+	box-shadow: -10px 16px 32px #00000021;
+	border-radius: 10px;
+	padding: 0.5rem;
+}
+.dims input {
+	width: 25%;
 }
