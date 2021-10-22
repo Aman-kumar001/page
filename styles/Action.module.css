@@ -28,3 +28,10 @@
 	scrollbar-width: thin;
 	scrollbar-color: #0670ed #004cff38;
 }
+
+@media (max-width: 1250px) {
+	.cont {
+		width: 90vw;
+		left: 5vw;
+	}
+}

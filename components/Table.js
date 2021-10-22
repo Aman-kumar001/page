@@ -452,6 +452,7 @@ const Table = () => {
 											textOverflow: 'ellipsis',
 											whiteSpace: 'nowrap',
 											width: '5rem',
+											margin: 'auto',
 											// border: '1px solid black',
 										}}
 									>
@@ -1665,7 +1666,13 @@ const Table = () => {
 								</td>
 
 								<td style={{ padding: '0.4rem' }}>
-									<p>
+									<p
+										style={{
+											width: '1.8rem',
+											height: '1.8rem',
+											margin: 'auto',
+										}}
+									>
 										<CircularProgressbar
 											value={data.CS * 10}
 											text={`${data.CS}`}
@@ -1697,8 +1704,18 @@ const Table = () => {
 										/>
 									</p>
 								</td>
-								<td style={{ padding: '0.4rem' }}>
-									<p>
+								<td
+									style={{
+										padding: '0.4rem',
+									}}
+								>
+									<p
+										style={{
+											width: '1.8rem',
+											height: '1.8rem',
+											margin: 'auto',
+										}}
+									>
 										<CircularProgressbar
 											value={data.DS * 10}
 											text={`${data.DS}`}
@@ -1741,10 +1758,13 @@ const Table = () => {
 									>
 										<span
 											style={{
-												flex: 1,
+												height: '2rem',
+												width: '2rem',
 												borderRadius: '50%',
-												padding: '0.5rem 0',
 												backgroundColor: '#CCDBFF',
+												display: 'flex',
+												alignItems: 'center',
+												justifyContent: 'center',
 											}}
 										>
 											<svg
@@ -1761,10 +1781,13 @@ const Table = () => {
 										</span>
 										<span
 											style={{
-												flex: '1',
-												padding: '0.5rem 0',
+												height: '2rem',
+												width: '2rem',
 												borderRadius: '50%',
 												backgroundColor: '#F2E8FF',
+												display: 'flex',
+												alignItems: 'center',
+												justifyContent: 'center',
 											}}
 										>
 											<svg

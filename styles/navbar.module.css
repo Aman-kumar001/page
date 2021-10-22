@@ -34,6 +34,7 @@
 	justify-content: center;
 	position: relative;
 }
+
 .ftrs p:hover {
 	color: #fff !important;
 	background-color: #366ef1;
@@ -81,6 +82,7 @@
 	padding: 1rem 1rem;
 	border-radius: 10px;
 	height: auto;
+	z-index: 100;
 }
 .dropdowns p {
 	text-align: left;
@@ -105,6 +107,7 @@
 	font-size: 0.8rem;
 	border-radius: 10px;
 	box-shadow: 12px 9px 38px #00000014;
+	z-index: 100;
 }
 .userPanel p {
 	color: #707070;
@@ -121,4 +124,15 @@
 	background-color: #fff;
 	border: 1px solid #ff002b;
 	color: #ff002b;
+}
+
+@media (max-width: 1200px) {
+	.ftrs p {
+		font-size: 0.7rem;
+	}
+}
+@media (max-width: 900px) {
+	.ftrs p {
+		font-size: 0.6rem;
+	}
 }
