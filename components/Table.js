@@ -1665,7 +1665,7 @@ const Table = () => {
 									)}
 								</td>
 
-								<td style={{ padding: '0.4rem' }}>
+								<td style={{ padding: '0.2rem' }}>
 									<p
 										style={{
 											width: '1.8rem',
@@ -1706,7 +1706,7 @@ const Table = () => {
 								</td>
 								<td
 									style={{
-										padding: '0.4rem',
+										padding: '0.2rem',
 									}}
 								>
 									<p

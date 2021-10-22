@@ -130,6 +130,10 @@
 	.ftrs p {
 		font-size: 0.7rem;
 	}
+	.dropdowns p {
+		font-size: 0.6rem;
+		padding: 0.3rem 0.5rem;
+	}
 }
 @media (max-width: 900px) {
 	.ftrs p {
