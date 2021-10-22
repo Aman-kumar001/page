@@ -54,6 +54,12 @@
 	margin-left: 0.5rem;
 	border-radius: 10px;
 }
+.infoLeft :nth-child(3) span:hover {
+	box-shadow: 0px 0px 16px #fcaf0950;
+}
+.create:hover {
+	box-shadow: 0px 0px 16px #366ef150;
+}
 
 .table {
 	width: 95vw;

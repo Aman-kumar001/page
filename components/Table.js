@@ -13,6 +13,7 @@ const Table = () => {
 	const [editFollowUp, setEditFollowUp] = useState(false);
 	const [editDelivery, setEditDelivery] = useState(false);
 	const [checked, setChecked] = useState(0);
+	const [create, setCreate] = useState(0);
 
 	//states for table
 	const [status, setStatus] = useState(-1);
@@ -200,18 +201,21 @@ const Table = () => {
 							/>
 						</svg>
 					</span>
-					<button
-						style={{
-							height: '2rem',
-							backgroundColor: '#366EF1',
-							color: '#fff',
-							border: 'none',
-							padding: '0 1rem',
-							borderRadius: '8px',
-						}}
-					>
-						Create Order
-					</button>
+					<span>
+						<button
+							className={classes.create}
+							style={{
+								height: '2rem',
+								backgroundColor: '#366EF1',
+								color: '#fff',
+								border: 'none',
+								padding: '0 1rem',
+								borderRadius: '8px',
+							}}
+						>
+							Create Order
+						</button>
+					</span>
 				</div>
 			</div>
 			{filter && (

@@ -52,7 +52,12 @@ const Action = ({ setAction, data }) => {
 					Choose actions on selected orders
 				</p>
 				<p style={{ margin: '0', display: 'flex', columnGap: '0.5rem' }}>
-					<button style={{ backgroundColor: '#366EF1', color: '#fff' }}>
+					<button
+						style={{
+							backgroundColor: '#366EF1',
+							color: '#fff',
+						}}
+					>
 						SHIP NOW
 					</button>
 					<button
