@@ -28,10 +28,29 @@
 	scrollbar-width: thin;
 	scrollbar-color: #0670ed #004cff38;
 }
+.scroll input {
+	display: none;
+}
+.scroll label {
+	padding: 0.5rem;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+.scroll label :nth-child(2) {
+	opacity: 0;
+}
+.scroll input:checked + label {
+	background-color: #eceef1;
+}
+.scroll input:checked + label :nth-child(2) {
+	opacity: 1;
+}
 
 @media (max-width: 1250px) {
 	.cont {
 		width: 90vw;
 		left: 5vw;
+		font-size: 0.9rem !important;
 	}
 }

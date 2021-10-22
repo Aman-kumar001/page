@@ -70,7 +70,7 @@ const Table = () => {
 		<div className={classes.container}>
 			<Navbar />
 			<div className={classes.pageInfo}>
-				{action && <Action setAction={setAction} />}
+				{action && <Action setAction={setAction} data={data} />}
 				<div className={classes.infoLeft}>
 					<p>Orders</p>
 					<p>1 ORDER SELECTED</p>
@@ -617,7 +617,13 @@ const Table = () => {
 								{/* status */}
 								<td>
 									<p>Rs. {data.rs}</p>
-									<p style={{ position: 'relative' }}>
+									<p
+										style={{
+											position: 'relative',
+											display: 'flex',
+											columnGap: '0.3rem',
+										}}
+									>
 										<span
 											style={{
 												padding: '0.2rem 0.5rem',
@@ -628,6 +634,13 @@ const Table = () => {
 												color: `${
 													data.status == 'Pending' ? '#FF002B' : '#00E3A5'
 												}`,
+
+												overflow: 'hidden',
+												textOverflow: 'ellipsis',
+												whiteSpace: 'nowrap',
+												display: 'block',
+												maxWidth: '3.5rem',
+												flex: '1',
 											}}
 										>
 											{data.status}
@@ -638,14 +651,17 @@ const Table = () => {
 											}}
 											style={{
 												backgroundColor: '#366EF1',
-												padding: '0 0.3rem',
+												padding: '0 0.4rem',
 												borderRadius: '5px',
+												display: 'flex',
+												justifyContent: 'center',
+												alignItems: 'center',
 											}}
 										>
 											<svg
 												xmlns='http://www.w3.org/2000/svg'
-												width='7.9'
-												height='7.9'
+												width='10'
+												height='10'
 												viewBox='0 0 24 24'
 											>
 												<path
