@@ -22,6 +22,7 @@ const Table = () => {
 	const [dims, setDims] = useState(-1);
 	const [filter, setFilter] = useState(false);
 	const [action, setAction] = useState(false);
+	const [totalChecked, setTotalChecked] = useState(0);
 	const [data, setData] = useState([
 		{
 			id: '#123123',
@@ -66,6 +67,16 @@ const Table = () => {
 			DS: 4,
 		},
 	]);
+
+	const findChecked = () => {
+		const temp = [];
+		data.forEach((item, index) => {
+			if (document.getElementById(`${'id' + index}`).checked) temp.push(index);
+		});
+		console.log(temp.length);
+		setTotalChecked(temp.length);
+	};
+
 	return (
 		<div className={classes.container}>
 			<Navbar />
@@ -73,11 +84,16 @@ const Table = () => {
 				{action && <Action setAction={setAction} data={data} />}
 				<div className={classes.infoLeft}>
 					<p>Orders</p>
-					<p>1 ORDER SELECTED</p>
+					{totalChecked > 0 && <p>{totalChecked} ORDER SELECTED</p>}
 					<p>
-						<span style={{ cursor: 'pointer' }} onClick={() => setAction(true)}>
-							Take Actions
-						</span>
+						{totalChecked > 0 && (
+							<span
+								style={{ cursor: 'pointer' }}
+								onClick={() => setAction(true)}
+							>
+								Take Actions
+							</span>
+						)}
 					</p>
 				</div>
 				<div className={classes.infoRight}>
@@ -375,6 +391,7 @@ const Table = () => {
 											name={'id' + index}
 											id={'id' + index}
 											style={{ display: 'none' }}
+											onChange={() => findChecked()}
 										/>
 										<label
 											htmlFor={'id' + index}

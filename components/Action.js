@@ -37,7 +37,10 @@ const Action = ({ setAction, data }) => {
 	}, []);
 
 	return (
-		<div className={classes.cont}>
+		<div
+			className={classes.cont}
+			style={{ height: `${edit1 || edit2 || edit3 || edit4 ? 80 : 40}vh` }}
+		>
 			<div
 				style={{
 					display: 'flex',

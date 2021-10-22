@@ -1,5 +1,4 @@
 .cont {
-	height: 80vh;
 	width: 80vw;
 	position: absolute;
 	top: 10vh;
@@ -41,6 +40,9 @@
 	opacity: 0;
 }
 .scroll input:checked + label {
+	background-color: #eceef1;
+}
+.scroll label:hover {
 	background-color: #eceef1;
 }
 .scroll input:checked + label :nth-child(2) {
