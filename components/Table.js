@@ -6,7 +6,9 @@ import Image from 'next/dist/client/image';
 import Shopify from '../public/table/shopify.svg';
 import 'react-circular-progressbar/dist/styles.css';
 import Action from './Action';
+import { useRouter } from 'next/dist/client/router';
 const Table = () => {
+	const route = useRouter();
 	const [editDims, setEditDims] = useState(false);
 	const [editStatus, setEditStatus] = useState('');
 	const [editStaff, setEditStaff] = useState('');
@@ -203,6 +205,9 @@ const Table = () => {
 					</span>
 					<span>
 						<button
+							// link for new create page
+							// onClick={() => route.push('/Create')}
+
 							className={classes.create}
 							style={{
 								height: '2rem',

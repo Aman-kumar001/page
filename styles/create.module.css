@@ -1,0 +1,160 @@
+.cont {
+	width: 100%;
+	color: #333333;
+}
+
+/* header portion */
+.header {
+	display: flex;
+	width: 95%;
+	margin: auto;
+	padding: 1rem 0;
+}
+.header p {
+	margin: 0;
+	display: flex;
+	align-items: center;
+}
+.btn {
+	background-color: #366ef1;
+	color: #fff;
+	border: none;
+	border-radius: 8px;
+	height: 2rem;
+	padding: 0 1rem;
+	font-size: 0.8rem;
+	font-weight: 600;
+}
+.dropdown {
+	position: absolute;
+	width: 100%;
+	height: 14rem;
+
+	top: 105%;
+	left: 0rem;
+	border-radius: 10px;
+	padding: 0.5rem;
+	background-color: #fff;
+	box-shadow: 0px 26px 81px #33333350;
+	z-index: 100;
+}
+.scroll {
+	height: 75%;
+	overflow-y: scroll;
+	scrollbar-width: thin;
+	scrollbar-color: #0670ed #004cff38;
+}
+.scroll input {
+	display: none;
+}
+.scroll label {
+	font-size: 1rem;
+	padding: 0.3rem 0.2rem;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	font-weight: 400;
+	border-radius: 4px;
+}
+.scroll label:hover {
+	background-color: #eceef1;
+}
+.scroll label span:nth-child(2) {
+	opacity: 0;
+}
+.scroll input:checked + label {
+	background-color: #eceef1;
+}
+.scroll input:checked + label span:last-child {
+	opacity: 1;
+}
+.dropdown button {
+	border: none;
+	color: #333333;
+	background-color: #fff;
+	padding: 0.2rem 0.5rem;
+	border-radius: 4px;
+}
+
+.body {
+	width: 95%;
+	margin: auto;
+}
+.first {
+	width: 100%;
+	padding: 1rem 3rem;
+	background-color: #fff;
+	border-radius: 10px;
+}
+.form1 {
+	width: 70%;
+}
+.first:hover,
+.second:hover,
+.third:hover {
+	box-shadow: 0px 26px 81px #33333310;
+}
+.second {
+	width: 100%;
+	padding: 1rem 3rem;
+	background-color: #fff;
+	border-radius: 10px;
+	margin: 1.5rem 0;
+}
+.form2 {
+	width: 100%;
+	display: flex;
+	column-gap: 1rem;
+	flex-wrap: wrap;
+}
+.text {
+	min-width: 10rem;
+	flex: 1;
+	min-width: 15rem;
+	margin: 1rem 0;
+}
+.text label {
+	display: block;
+	font-size: 0.8rem;
+}
+.text input:hover {
+	border: 1px solid #33333380;
+}
+.text input {
+	display: block;
+	height: 2rem;
+	min-width: 15rem;
+	/* width: 100%; */
+	border: 1px solid #33333350;
+	outline: none;
+	padding: 0.5rem;
+}
+.text input::placeholder {
+	color: #33333380;
+}
+.submit {
+	width: 100%;
+	margin: 1.5rem 0;
+	margin-bottom: 3rem;
+	display: flex;
+	column-gap: 1rem;
+	justify-content: flex-end;
+}
+.submit button {
+	border: none;
+	height: 2.5rem;
+	font-size: 1rem;
+	padding: 0 1rem;
+	border-radius: 8px;
+	background-color: #f4f4f9;
+}
+@media (max-width: 1200px) {
+	.form1 {
+		width: 80%;
+	}
+}
+@media (max-width: 1000px) {
+	.form1 {
+		width: 100%;
+	}
+}
