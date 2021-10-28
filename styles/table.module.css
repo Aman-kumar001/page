@@ -476,3 +476,9 @@
 		row-gap: 1rem;
 	}
 }
+@media (max-width: 375px) {
+	.infoRight {
+		flex-wrap: wrap;
+		row-gap: 0.5rem;
+	}
+}
