@@ -46,6 +46,7 @@ const Action = ({ setAction, data }) => {
 					display: 'flex',
 					alignItems: 'center',
 					justifyContent: 'space-between',
+					overflow: 'scroll',
 				}}
 			>
 				<p style={{ fontSize: '1.3rem', fontWeight: '700', margin: 0 }}>
@@ -72,13 +73,7 @@ const Action = ({ setAction, data }) => {
 					</button>
 				</p>
 			</div>
-			<div
-				style={{
-					display: 'flex',
-					marginTop: '3rem',
-					height: '5rem',
-				}}
-			>
+			<div className={classes.cardCont}>
 				<div
 					style={{
 						flex: '1',

@@ -52,6 +52,7 @@ const Create = () => {
 					Create Orders
 				</p>
 				<p
+					className={classes.headerLeft}
 					style={{
 						flex: 1,
 						justifyContent: 'flex-end',
@@ -380,27 +381,7 @@ const Create = () => {
 					<div>
 						<div className={classes.form1}>
 							<div
-								style={{
-									display: 'flex',
-									alignContent: 'center',
-									columnGap: '0.5rem',
-									fontSize: '0.8rem',
-									marginBottom: '0.3rem',
-								}}
-							>
-								<p
-									style={{
-										flex: 2,
-										margin: '0',
-									}}
-								>
-									Select Product
-								</p>
-								<p style={{ flex: 1, margin: '0' }}>Quantity</p>
-								<p style={{ flex: 1, margin: '0' }}>Cost</p>
-							</div>
-
-							<div
+								className={classes.form1Div}
 								style={{
 									alignItems: 'center',
 									justifyContent: 'space-between',
@@ -409,11 +390,21 @@ const Create = () => {
 								}}
 							>
 								<div
+									className={classes.firstDiv}
 									style={{
 										margin: 0,
 										flex: '2',
 									}}
 								>
+									<p
+										style={{
+											margin: '0',
+											fontSize: '0.8rem',
+											marginBottom: '0.1rem',
+										}}
+									>
+										Select Product
+									</p>
 									<p
 										style={{
 											height: '100%',
@@ -707,83 +698,110 @@ const Create = () => {
 										)}
 									</p>
 								</div>
-								<p
+								<div
 									style={{
-										display: 'flex',
-										alignItems: 'center',
-										columnGap: '0.2rem',
 										margin: '0',
 										flex: '1',
 									}}
 								>
-									<span
-										onClick={() => {
-											if (qty > 0) setQty(qty - 1);
-										}}
+									<p
 										style={{
-											width: '2rem',
-											height: '2rem',
-											border: `${
-												qty > 0 ? '1px solid #0670ed' : '1px solid #33333350'
-											}`,
-											display: 'grid',
-											alignContent: 'center',
-											justifyContent: 'center',
-											fontSize: '2rem',
-											paddingBottom: '0.1rem',
-											borderRadius: '4px',
-											cursor: 'pointer',
-											color: `${qty > 0 ? '#0670ed' : '#33333350'}`,
-											fontWeight: '700',
+											margin: '0',
+											fontSize: '0.8rem',
+											marginBottom: '0.1rem',
 										}}
 									>
-										-
-									</span>
-									<span
+										Quantity
+									</p>
+									<p
 										style={{
-											width: '3rem',
-											height: '2rem',
-											border: '1px solid #33333350',
-											display: 'grid',
-											alignContent: 'center',
-											justifyContent: 'center',
-											borderRadius: '4px',
+											display: 'flex',
+											alignItems: 'center',
+											columnGap: '0.2rem',
+											margin: '0',
+											flex: '1',
 										}}
 									>
-										{qty}
-									</span>
-									<span
-										onClick={() => setQty(qty + 1)}
+										<span
+											onClick={() => {
+												if (qty > 0) setQty(qty - 1);
+											}}
+											style={{
+												width: '2rem',
+												height: '2rem',
+												border: `${
+													qty > 0 ? '1px solid #0670ed' : '1px solid #33333350'
+												}`,
+												display: 'grid',
+												alignContent: 'center',
+												justifyContent: 'center',
+												fontSize: '2rem',
+												paddingBottom: '0.1rem',
+												borderRadius: '4px',
+												cursor: 'pointer',
+												color: `${qty > 0 ? '#0670ed' : '#33333350'}`,
+												fontWeight: '700',
+											}}
+										>
+											-
+										</span>
+										<span
+											style={{
+												width: '3rem',
+												height: '2rem',
+												border: '1px solid #33333350',
+												display: 'grid',
+												alignContent: 'center',
+												justifyContent: 'center',
+												borderRadius: '4px',
+											}}
+										>
+											{qty}
+										</span>
+										<span
+											onClick={() => setQty(qty + 1)}
+											style={{
+												width: '2rem',
+												height: '2rem',
+												border: '1px solid #0670ed',
+												display: 'grid',
+												alignContent: 'center',
+												justifyContent: 'center',
+												fontSize: '2rem',
+												paddingBottom: '0.1rem',
+												borderRadius: '4px',
+												cursor: 'pointer',
+												color: '#0670ed',
+												fontWeight: '700',
+											}}
+										>
+											+
+										</span>
+									</p>
+								</div>
+								<div style={{ margin: '0', flex: '1' }}>
+									<p
 										style={{
-											width: '2rem',
-											height: '2rem',
-											border: '1px solid #0670ed',
-											display: 'grid',
-											alignContent: 'center',
-											justifyContent: 'center',
-											fontSize: '2rem',
-											paddingBottom: '0.1rem',
-											borderRadius: '4px',
-											cursor: 'pointer',
-											color: '#0670ed',
-											fontWeight: '700',
+											margin: '0',
+											fontSize: '0.8rem',
+											marginBottom: '0.1rem',
 										}}
 									>
-										+
-									</span>
-								</p>
-								<p style={{ margin: '0', flex: '1' }}>
-									<span
-										style={{
-											border: '1px solid #33333350',
-											padding: '0.3rem',
-											borderRadius: '4px',
-											display: 'inline-block',
-										}}
-									>
-										$ 1000000
-									</span>
-								</p>
+										Cost
+									</p>
+									<p style={{ margin: '0', flex: '1' }}>
+										<span
+											style={{
+												border: '1px solid #33333350',
+												padding: '0.3rem',
+												borderRadius: '4px',
+												display: 'inline-block',
+											}}
+										>
+											$ 1000000
+										</span>
+									</p>
+								</div>
 							</div>
 						</div>
 					</div>

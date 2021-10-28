@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import classes from '../styles/table.module.css';
 import Navbar from './Navbar';
 import { CircularProgressbar } from 'react-circular-progressbar';
@@ -7,8 +7,36 @@ import Shopify from '../public/table/shopify.svg';
 import 'react-circular-progressbar/dist/styles.css';
 import Action from './Action';
 import { useRouter } from 'next/dist/client/router';
+import NavMob from './NavbarMobile';
+
+// function getWindowDimensions() {
+// 	const { innerWidth: width, innerHeight: height } = window;
+// 	return {
+// 		width,
+// 		height,
+// 	};
+// }
+
+// function useWindowDimensions() {
+// 	const [windowDimensions, setWindowDimensions] = useState(
+// 		getWindowDimensions()
+// 	);
+
+// 	useEffect(() => {
+// 		function handleResize() {
+// 			setWindowDimensions(getWindowDimensions());
+// 		}
+
+// 		window.addEventListener('resize', handleResize);
+// 		return () => window.removeEventListener('resize', handleResize);
+// 	}, []);
+
+// 	return windowDimensions;
+// }
+
 const Table = () => {
 	const route = useRouter();
+	// const screen = useWindowDimensions();
 	const [editDims, setEditDims] = useState(false);
 	const [editStatus, setEditStatus] = useState('');
 	const [editStaff, setEditStaff] = useState('');
@@ -16,6 +44,8 @@ const Table = () => {
 	const [editDelivery, setEditDelivery] = useState(false);
 	const [checked, setChecked] = useState(0);
 	const [create, setCreate] = useState(0);
+	const [calander, setCalander] = useState(false);
+	const [ready, setReady] = useState(false);
 
 	//states for table
 	const [status, setStatus] = useState(-1);
@@ -71,6 +101,10 @@ const Table = () => {
 		},
 	]);
 
+	useEffect(() => {
+		setReady(true);
+	});
+
 	const findChecked = () => {
 		const temp = [];
 		data.forEach((item, index) => {
@@ -82,7 +116,9 @@ const Table = () => {
 
 	return (
 		<div className={classes.container}>
-			<Navbar />
+			{ready && window.innerWidth >= 800 && <Navbar />}
+			{ready && window.innerWidth < 800 && <NavMob width={window.innerWidth} />}
+
 			<div className={classes.pageInfo}>
 				{action && <Action setAction={setAction} data={data} />}
 				<div className={classes.infoLeft}>
@@ -100,19 +136,48 @@ const Table = () => {
 					</p>
 				</div>
 				<div className={classes.infoRight}>
-					<input
-						style={{
-							height: '2rem',
-							borderRadius: '8px',
-							border: 'none',
-							padding: '0.2rem 0.2rem',
-							color: '#707070',
-							outline: 'none',
-						}}
-						type='date'
-						name='date'
-						id='date'
-					/>
+					<div style={{ position: 'relative' }}>
+						<span
+							style={{
+								height: '2rem',
+								width: '2rem',
+								backgroundColor: '#fff',
+								display: 'flex',
+								justifyContent: 'center',
+								alignItems: 'center',
+								borderRadius: '8px',
+								backgroundColor: `${calander ? '#366ef1' : '#fff'}`,
+							}}
+							onClick={() => {
+								if (!calander) setCalander(true);
+								else setCalander(false);
+							}}
+						>
+							<svg
+								xmlns='http://www.w3.org/2000/svg'
+								width='16'
+								height='16'
+								viewBox='0 0 24 24'
+							>
+								<path
+									d='M20 20h-4v-4h4v4zm-6-10h-4v4h4v-4zm6 0h-4v4h4v-4zm-12 6h-4v4h4v-4zm6 0h-4v4h4v-4zm-6-6h-4v4h4v-4zm16-8v22h-24v-22h3v1c0 1.103.897 2 2 2s2-.897 2-2v-1h10v1c0 1.103.897 2 2 2s2-.897 2-2v-1h3zm-2 6h-20v14h20v-14zm-2-7c0-.552-.447-1-1-1s-1 .448-1 1v2c0 .552.447 1 1 1s1-.448 1-1v-2zm-14 2c0 .552-.447 1-1 1s-1-.448-1-1v-2c0-.552.447-1 1-1s1 .448 1 1v2z'
+									fill={calander ? '#fff' : '#366ef1'}
+								/>
+							</svg>
+						</span>
+						{calander && (
+							<div className={classes.calander}>
+								<div>
+									<label htmlFor='calc1'>Starting Date</label>
+									<input type='date' name='calc1' id='calc1' />
+								</div>
+								<div>
+									<label htmlFor='calc2'>Last Date</label>
+									<input type='date' name='calc2' id='calc2' />
+								</div>
+							</div>
+						)}
+					</div>
 					<input
 						type='text'
 						style={{

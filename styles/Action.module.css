@@ -52,10 +52,28 @@
 	opacity: 1;
 }
 
+.cardCont {
+	display: flex;
+	margin-top: 3rem;
+	height: 5rem;
+}
+
 @media (max-width: 1250px) {
 	.cont {
 		width: 90vw;
 		left: 5vw;
 		font-size: 0.9rem !important;
+	}
+}
+@media (max-width: 800px) {
+	.cont {
+		height: auto !important;
+	}
+	.cardCont {
+		height: auto;
+		flex-direction: column;
+	}
+	.scroll {
+		height: 15vh;
 	}
 }
