@@ -1,7 +1,10 @@
 import { useEffect, useState } from 'react';
 import Navbar from '../components/Navbar';
 import classes from '../styles/create.module.css';
+import useWindowDimensions from '../components/Width';
+import NavMob from '../components/NavbarMobile';
 const Create = () => {
+	const { height, width } = useWindowDimensions();
 	const [role, setRole] = useState(false);
 	const [who, setWho] = useState('Publisher');
 	const [t1, sett1] = useState('');
@@ -37,9 +40,14 @@ const Create = () => {
 		}
 	};
 
+	useEffect(() => {
+		setReady(true);
+	}, []);
+
 	return (
 		<div className={classes.cont}>
-			<Navbar />
+			{ready && width >= 800 && <Navbar />}
+			{ready && width < 800 && <NavMob width={width} />}
 			<div className={classes.header}>
 				<p
 					style={{
