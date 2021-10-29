@@ -8,35 +8,11 @@ import 'react-circular-progressbar/dist/styles.css';
 import Action from './Action';
 import { useRouter } from 'next/dist/client/router';
 import NavMob from './NavbarMobile';
-
-// function getWindowDimensions() {
-// 	const { innerWidth: width, innerHeight: height } = window;
-// 	return {
-// 		width,
-// 		height,
-// 	};
-// }
-
-// function useWindowDimensions() {
-// 	const [windowDimensions, setWindowDimensions] = useState(
-// 		getWindowDimensions()
-// 	);
-
-// 	useEffect(() => {
-// 		function handleResize() {
-// 			setWindowDimensions(getWindowDimensions());
-// 		}
-
-// 		window.addEventListener('resize', handleResize);
-// 		return () => window.removeEventListener('resize', handleResize);
-// 	}, []);
-
-// 	return windowDimensions;
-// }
+import useWindowDimensions from './Width';
 
 const Table = () => {
 	const route = useRouter();
-	// const screen = useWindowDimensions();
+	const { height, width } = useWindowDimensions();
 	const [editDims, setEditDims] = useState(false);
 	const [editStatus, setEditStatus] = useState('');
 	const [editStaff, setEditStaff] = useState('');
@@ -116,8 +92,8 @@ const Table = () => {
 
 	return (
 		<div className={classes.container}>
-			{ready && window.innerWidth >= 800 && <Navbar />}
-			{ready && window.innerWidth < 800 && <NavMob width={window.innerWidth} />}
+			{ready && width >= 800 && <Navbar />}
+			{ready && width < 800 && <NavMob width={width} />}
 
 			<div className={classes.pageInfo}>
 				{action && <Action setAction={setAction} data={data} />}
@@ -328,6 +304,17 @@ const Table = () => {
 							<p>Email Id</p>
 							<p>Phone No.</p>
 							<p>Staff</p>
+						</div>
+						<div
+							style={{
+								paddingLeft: '1rem',
+								fontSize: '0.8rem',
+								position: 'absolute',
+								bottom: '0.5rem',
+								cursor: 'pointer',
+							}}
+						>
+							<p onClick={() => setFilter(false)}>CLOSE</p>
 						</div>
 					</div>
 					<div className={classes.filterRight}>

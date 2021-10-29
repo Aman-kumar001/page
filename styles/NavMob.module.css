@@ -38,3 +38,42 @@
 	justify-content: space-between;
 	align-items: center;
 }
+.userList {
+	position: absolute;
+	height: auto;
+	width: 40vw;
+	background-color: #fff;
+	top: 100%;
+	right: 100%;
+	padding: 0.5rem;
+	border-radius: 10px;
+	box-shadow: 0px 26px 81px #0000005c;
+}
+.userList p {
+	width: 100%;
+	text-align: center;
+	margin: 0;
+	padding: 0.5rem 0;
+	border-radius: 8px;
+}
+.userList p:last-child {
+	margin-top: 1rem;
+	color: #ff002b;
+	background-color: #ffccd5;
+}
+.menuList p {
+	font-size: 1.2rem;
+	font-weight: 400;
+	color: #333333;
+}
+
+.listElements p {
+	margin: 0;
+	padding: 0.5rem;
+	border-radius: 8px;
+	cursor: pointer;
+}
+.listElements div p {
+	font-size: 0.8rem;
+	text-align: right;
+}

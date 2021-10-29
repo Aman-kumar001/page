@@ -6,6 +6,11 @@ import Image from 'next/dist/client/image';
 const NavMob = ({ width }) => {
 	const [navOpen, setNavOpen] = useState(false);
 	const [user, setUser] = useState(false);
+	const [orders, setOrders] = useState(false);
+	const [shipments, setShipments] = useState(false);
+	const [stores, setStores] = useState(false);
+	const [staff, setStaff] = useState(false);
+	const [biling, setBiling] = useState(false);
 
 	const animateMenu = () => {
 		var list = document.getElementById('mobMenuList');
@@ -14,6 +19,14 @@ const NavMob = ({ width }) => {
 		} else {
 			list.style.right = '-100%';
 		}
+	};
+
+	const resetAll = () => {
+		setBiling(false);
+		setOrders(false);
+		setStaff(false);
+		setShipments(false);
+		setStores(false);
 	};
 
 	return (
@@ -46,6 +59,7 @@ const NavMob = ({ width }) => {
 							display: 'flex',
 							alignItems: 'center',
 							justifyContent: 'space-between',
+							position: 'relative',
 						}}
 					>
 						<div
@@ -53,6 +67,7 @@ const NavMob = ({ width }) => {
 								display: 'flex',
 								alignItems: 'center',
 								columnGap: '1rem',
+								position: 'relative',
 							}}
 						>
 							<svg
@@ -60,7 +75,10 @@ const NavMob = ({ width }) => {
 								width='20'
 								height='20'
 								viewBox='0 0 20 20'
-								onClick={() => setUser(true)}
+								onClick={() => {
+									if (!user) setUser(true);
+									else setUser(false);
+								}}
 							>
 								<path
 									id='user_icon'
@@ -71,6 +89,14 @@ const NavMob = ({ width }) => {
 								/>
 							</svg>
 							<Image src={noti} />
+							{user && (
+								<div className={classes.userList}>
+									<p>Edit Profile</p>
+									<p>Settings</p>
+									<p>Wallet</p>
+									<p>Log Out</p>
+								</div>
+							)}
 						</div>
 						<div>
 							<svg
@@ -95,7 +121,7 @@ const NavMob = ({ width }) => {
 
 					<div className={classes.userData}>
 						<p>
-							<span>
+							<span style={{ display: 'flex', alignItems: 'center' }}>
 								<span>
 									<Image src={wallet} />
 								</span>
@@ -111,15 +137,119 @@ const NavMob = ({ width }) => {
 								</span>
 							</span>
 						</p>
-						<p></p>
 					</div>
 
 					<div className={classes.listElements}>
-						<p>Orders</p>
-						<p>Shipments</p>
-						<p>Stores</p>
-						<p>Staff</p>
-						<p>Billing</p>
+						<p
+							onClick={() => {
+								resetAll();
+								if (!orders) setOrders(true);
+								else setOrders(false);
+							}}
+							style={{
+								color: `${orders ? '#fff' : ''}`,
+								backgroundColor: `${orders ? '#366ef1' : ''}`,
+								fontWeight: `${orders ? 600 : ''}`,
+							}}
+						>
+							Orders
+						</p>
+						{orders && (
+							<div>
+								<p>Create Orders</p>
+								<p>All Orders</p>
+								<p>Abonded Cart</p>
+								<p>All Customers</p>
+							</div>
+						)}
+						<p
+							onClick={() => {
+								resetAll();
+								if (!shipments) setShipments(true);
+								else setShipments(false);
+							}}
+							style={{
+								color: `${shipments ? '#fff' : ''}`,
+								backgroundColor: `${shipments ? '#366ef1' : ''}`,
+								fontWeight: `${shipments ? 600 : ''}`,
+							}}
+						>
+							Shipments
+						</p>
+						{shipments && (
+							<div>
+								<p>All Shipments</p>
+								<p>Shipment Slips</p>
+								<p>All NDR</p>
+								<p>Weight Discrepancy</p>
+							</div>
+						)}
+						<p
+							onClick={() => {
+								resetAll();
+								if (!stores) setStores(true);
+								else setStores(false);
+							}}
+							style={{
+								color: `${stores ? '#fff' : ''}`,
+								backgroundColor: `${stores ? '#366ef1' : ''}`,
+								fontWeight: `${stores ? 600 : ''}`,
+							}}
+						>
+							Stores
+						</p>
+						{stores && (
+							<div>
+								<p>Warehouseses</p>
+								<p>Products</p>
+								<p>Inventory</p>
+								<p>Channels</p>
+							</div>
+						)}
+						<p
+							onClick={() => {
+								resetAll();
+								if (!staff) setStaff(true);
+								else setStaff(false);
+							}}
+							style={{
+								color: `${staff ? '#fff' : ''}`,
+								backgroundColor: `${staff ? '#366ef1' : ''}`,
+								fontWeight: `${staff ? 600 : ''}`,
+							}}
+						>
+							Staff
+						</p>
+						{staff && (
+							<div>
+								<p>All Members</p>
+								<p>Role Groups</p>
+								<p>Assign Orders</p>
+							</div>
+						)}
+						<p
+							onClick={() => {
+								resetAll();
+								if (!biling) setBiling(true);
+								else setBiling(false);
+							}}
+							style={{
+								color: `${biling ? '#fff' : ''}`,
+								backgroundColor: `${biling ? '#366ef1' : ''}`,
+								fontWeight: `${biling ? 600 : ''}`,
+							}}
+						>
+							Billing
+						</p>
+						{biling && (
+							<div>
+								<p>Shopping Plans</p>
+								<p>Shipping rate Calculator</p>
+								<p>COD Remittance</p>
+								<p>Wallet Transactions</p>
+								<p>Shipping Charges</p>
+							</div>
+						)}
 						<p>Control Tower</p>
 						<p>Reports</p>
 						<p>Tickets</p>
